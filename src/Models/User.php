@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Models;
+use App\Models\Story;
+use App\Models\View;
 
 class User extends Model
 {
@@ -33,6 +35,20 @@ class User extends Model
             ':username' => $username
         ]);
         return $data;
+    }
+
+    public function get_total_views($username) {
+        $posts = (new Story())->select_by_username($username);
+        $views = 0;
+        foreach ($posts as $post) {
+            $views += (new View())->get_post_view_count($post);
+        }
+        return $views;
+    }
+
+    public function get_total_posts($username) {
+        $posts = (new Story())->select_by_username($username);
+        return count($posts);
     }
 
 }

@@ -1,13 +1,16 @@
 <?php
 
 namespace App\Controllers;
-use App\Models\Profile;
+
+use App\Framework\Utilities\Session;
+use App\Models\User;
 use Exception;
 
 class ProfileController extends Controller {
 
     public function index() {        
-        $user_id = 1;
-        return $this->render('profile/index', ['user_id' => $user_id]);
+        $auth = Session::read('Auth');
+        return $this->render('profile/index' , ['auth' => $auth]);
     }
+
 }

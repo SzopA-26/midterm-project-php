@@ -125,7 +125,7 @@
                                     <i class="fa fa-envelope"></i>
                                 </span>
                             </span>
-                            <input type="text" class="form-control " id="email" placeholder="Enter email" name="email">
+                            <input type="email" class="form-control " id="email" placeholder="Enter email" name="email">
                         </div>
                         <br>
                         <div class="input-group">
@@ -134,7 +134,7 @@
                                     <i class="fa fa-user"></i>
                                 </span>
                             </span>
-                            <input type="text" class="form-control " id="username" placeholder="Enter username"
+                            <input type="username" class="form-control " id="username" placeholder="Enter username"
                                 name="username">
                         </div>
                         <br>

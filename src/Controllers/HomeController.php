@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Controllers;
-use App\Models\Profile;
 use Exception;
 
 class HomeController extends Controller

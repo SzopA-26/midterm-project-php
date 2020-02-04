@@ -17,4 +17,7 @@ class StoriesController extends Controller
     public function write() {
         return $this->render('stories/write');
     }
+
+    
+
 }

@@ -41,6 +41,10 @@ class UsersController extends Controller
             echo "<script>alert('email already exist.')</script>";
         } else if ($password != $c_password) {
             echo "<script>alert('password doesn't macth.')</script>";
+        } else if (strlen($username)<6) {
+            echo "<script>alert('username must contain at least 6 characters.')</script>";
+        } else if (strlen($password)<6) {
+            echo "<script>alert('password must contain at least 6 characters.')</script>";
         } else {
             $hash = password_hash($password, PASSWORD_DEFAULT);
             $user = (new User())->insert($username, $email, $hash, $birthdate, $gender);

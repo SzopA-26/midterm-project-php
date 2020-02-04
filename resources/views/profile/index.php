@@ -1,6 +1,4 @@
 <?php $this->layout('layouts/app' ,['tab' => 'profile']) ?>
-<?php use App\Framework\Utilities\Session; ?>
-<?php $auth = Session::read('Auth'); ?>
 
 <div class="row">
     <div class="col-4 text-center">

@@ -1,0 +1,57 @@
+#sign-up-btn, #log-in-btn {
+    margin-left: 3px;
+    margin-right: 3px;
+}
+nav.navbar {
+    margin-bottom: 20px;
+}
+#search-form {
+    margin-left: 15vw;
+    width: 45vw;
+}
+#search-input {
+    width: 39vw;
+}
+
+
+/* index */
+.under-line{
+    margin-right: 100px;
+}
+h4.modal-title{
+    color: brown;
+}
+
+/* profile */
+div.card {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+#follow-btn{
+    width: 100%;
+}
+
+/* story */
+#title-header {
+    margin-top: 50px;
+}
+#link-tab {
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+.draft-content, .published-content {
+    margin-bottom: 25px;
+}
+a.nav-link, span.caret {
+    color: #000;
+}
+#write-story-btn {
+    color: #05af1b;
+    background-color: #fff;
+    border-color: #05af1b;
+}
+#write-story-btn:hover {
+    color: #05af1b;
+    background-color: #fff;
+    border-color: #05af1b;
+}

@@ -12,13 +12,18 @@ class HomeController extends Controller
         foreach ($posts as $post) {
             $views[$post->id] = (new View())->get_post_view_count($post->id);
         }
+        
         arsort($views);
+
         $i = 0;
         foreach ($views as $post_id => $view) {
-            if ($i++ > 5) {
+            if ($i > 5) {
                 break;
             } 
-            $trends[$i] = (new Story())->select_by_post_id($post_id);
+            if ((new Story())->select_by_post_id($post_id)) {
+                $trends[$i] = (new Story())->select_by_post_id($post_id);
+                $i++;
+            }
         }
         
         $posts_new = (new Story())->select_by_new(8);

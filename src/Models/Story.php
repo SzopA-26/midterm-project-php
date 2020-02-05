@@ -43,7 +43,7 @@ class Story extends Model
 
     public function select_by_post_id($post_id) {
         $sql = "SELECT * FROM posts JOIN `users` ON `posts`.`user_id`=`users`.`id`"
-            . " WHERE (`posts`.`id` = :post_id AND `deleted_at` is NULL)";
+            . " WHERE (`posts`.`id` = :post_id AND `deleted_at` is NULL AND `published_at` is NOT NULL)";
         $data = $this->db->queryFirst($sql. " LIMIT 1", [
             ':post_id' => $post_id
         ]);
@@ -61,7 +61,7 @@ class Story extends Model
 
     public function select_by_new($n) {
         $sql = "SELECT * FROM posts JOIN users ON `posts`.`user_id`=`users`.`id`
-        WHERE `deleted_at` IS NULL ORDER BY `posts`.`id` DESC LIMIT 6 ;";
+        WHERE `deleted_at` IS NULL AND `published_at` IS NOT NULL ORDER BY `posts`.`id` DESC LIMIT 6 ;";
             
         $data = $this->db->queryAll($sql, [
             ':n' => $n
@@ -112,7 +112,7 @@ class Story extends Model
         $data = $this->db->queryAll($sql);
         return $data;
     }
-    
+
     public function search_by_title($title) {
         $sql = "SELECT * FROM posts "
             . " WHERE `title` LIKE :title AND `deleted_at` is NULL AND `published_at` is NOT NULL";

@@ -82,7 +82,7 @@ $auth = Session::read('Auth');
         <br>
         <div class="card">
             <div class="card-body">
-                <h5 class="card-title"><?= $x++?>. <?= $trend->title ?></h5>
+                <h5 class="card-title"><?= $trend->title ?></h5>
                 <h6 class="card-subtitle mb-2 text-muted"><?= $trend->username ?></h6>
                 <img src="../../img/trend-1.jpg" alt="trend-1" width="100" height="100">
                 <p class="card-text"><?= $trend->content ?></p>

@@ -21,7 +21,7 @@
 
 <div class="draft-content">
 
-    <a href="/stories/post">
+    <a href="/stories/post/<?= $draft->id ?>">
         <h3><?= $draft->title ?></h3>
     </a>
     <figcaption class="figure-caption">

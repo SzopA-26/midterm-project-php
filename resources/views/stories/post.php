@@ -35,18 +35,21 @@ $auth = Session::read('Auth');
     </div>
 
     <!-- comment -->
-    <div class="container" style="margin-bottom: 10px">
+    <div class="container">
+        <form action="/stories/comment" method="post">
+            <div class="row">
+                <div class="col-1"></div>
+                <div class="col-10" style="text-align: right;">
+                    <input type="hidden" name="post_id" value="<?= $post->id ?>">
+                    <textarea style="margin-bottom: 15px;" class="form-control" rows="3" id="comment" placeholder="comment" name="content"></textarea>
+                    <button type="submit" class="btn btn-outline-primary"><i class="fa fa-comments"></i></i>
+                        Comment</button>
 
-        <div class="row">
-            <div class="col-1"></div>
-            <div class="col-10" style="text-align: right;">
-                <textarea style="margin-bottom: 10px;" class="form-control" rows="3" id="comment" placeholder="comment"></textarea>
-                <button type="button" class="btn btn-outline-primary"><i class="fa fa-comments"></i></i>
-                    Comment</button>
+                </div>
+                <div class="col-1"></div>
+
             </div>
-            <div class="col-1"></div>
-
-        </div>
+        </form>
 
     </div>
 
@@ -79,8 +82,8 @@ $auth = Session::read('Auth');
                                     </div>
                                     <div class="card-footer text-muted">
 
-                                            <span style="font-size: 90%;"><?= $comment->created_at ?></span>
-                                        </div>
+                                        <span style="font-size: 90%;"><?= $comment->created_at ?></span>
+                                    </div>
 
                                 </div>
                             </div>

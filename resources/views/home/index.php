@@ -55,7 +55,6 @@ $auth = Session::read('Auth');
         <h1>NEW</h1>
         <br>
         <?php foreach ($posts as $post) : ?>
-
             <div class="row">
                 <div class="col-8">
                     <h5><?= $post->title ?></h5>

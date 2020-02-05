@@ -93,6 +93,7 @@ $auth = Session::read('Auth');
 
         <!-- Modal content-->
         <div class="modal-content">
+            <form action="/profile/changeusername" method="post">
             <div class="container">
                 <div class="modal-header">
                     <div class="container">
@@ -115,18 +116,28 @@ $auth = Session::read('Auth');
                         </span>
                         <input type="username" class="form-control " id="username" placeholder="Enter new username" name="username">
                     </div>
+                    <br>
+                    <div class="input-group">
+                        <span class="input-group-append bg-white border-left-0">
+                            <span class="input-group-text bg-transparent">
+                                <i class="fa fa-key"></i>
+                            </span>
+                        </span>
+                        <input type="password" class="form-control " id="password" placeholder="Enter your password" name="c_password">
+                    </div>
 
                 </div>
                 <br>
                 <div class="modal-footer">
-                    <button class="btn btn-outline-info border-left-0 border" type="submit" onclick="loginBtnOnClick()">Submit
+                    <button class="btn btn-outline-info border-left-0 border" type="submit">Submit
                         <span class="fa fa-check"></span>
                     </button>
-                    <button class="btn btn-outline-danger border-left-0 border" type="submit" data-dismiss="modal">Cancel
+                    <button class="btn btn-outline-danger border-left-0 border" data-dismiss="modal">Cancel
                         <span class="fa fa-times"></span>
                     </button>
                 </div>
             </div>
+            </form>
         </div>
     </div>
 </div>
@@ -137,6 +148,7 @@ $auth = Session::read('Auth');
 
         <!-- Modal content-->
         <div class="modal-content">
+            <form action="/profile/changepassword" method="post">
             <div class="container">
                 <div class="modal-header">
                     <div class="container">
@@ -157,7 +169,7 @@ $auth = Session::read('Auth');
                                 <i class="fa fa-key"></i>
                             </span>
                         </span>
-                        <input type="password" class="form-control " id="password" placeholder="Enter current password" name="password">
+                        <input type="password" class="form-control " id="password" placeholder="Enter current password" name="old_password">
                     </div>
                     <br>
                     <div class="input-group">
@@ -166,7 +178,7 @@ $auth = Session::read('Auth');
                                 <i class="fa fa-unlock"></i>
                             </span>
                         </span>
-                        <input type="password" class="form-control " id="password" placeholder="Enter new password" name="password">
+                        <input type="password" class="form-control " id="password" placeholder="Enter new password" name="new_password">
                     </div>
                     <br>
                     <div class="input-group">
@@ -175,19 +187,20 @@ $auth = Session::read('Auth');
                                 <i class="fa fa-lock"></i>
                             </span>
                         </span>
-                        <input type="password" class="form-control " id="password" placeholder="Confirm new password" name="password">
+                        <input type="password" class="form-control " id="password" placeholder="Confirm new password" name="c_password">
                     </div>
                 </div>
                 <br>
                 <div class="modal-footer">
-                    <button class="btn btn-outline-info border-left-0 border" type="submit" onclick="loginBtnOnClick()">Submit
+                    <button class="btn btn-outline-info border-left-0 border" type="submit" >Submit
                         <span class="fa fa-check"></span>
                     </button>
-                    <button class="btn btn-outline-danger border-left-0 border" type="submit" data-dismiss="modal">Cancel
+                    <button class="btn btn-outline-danger border-left-0 border" data-dismiss="modal">Cancel
                         <span class="fa fa-times"></span>
                     </button>
                 </div>
             </div>
+            </form>
         </div>
     </div>
 </div>

@@ -19,6 +19,28 @@ class User extends Model
         return $data;
     }
 
+    public function update_username($old_username, $new_username) {
+        $sql = "UPDATE users SET"
+            . " `username` = :new_username"
+            . " WHERE `username` = :old_username";
+        $data = $this->db->queryFirst($sql, [
+            ':old_username' => $old_username,
+            ':new_username' => $new_username
+        ]);
+        return $data;
+    }
+
+    public function update_password($password, $username) {
+        $sql = "UPDATE users SET"
+            . " `password` = :password"
+            . " WHERE `username` = :username";
+        $data = $this->db->queryFirst($sql, [
+            ':password' => $password,
+            ':username' => $username
+        ]);
+        return $data;
+    }
+
     public function select_by_email($email) {
         $sql = "SELECT * FROM users"
             . " WHERE `email` = :email" . " LIMIT 1";

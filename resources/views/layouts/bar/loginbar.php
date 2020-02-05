@@ -11,6 +11,9 @@
     else if ($tab === 'editprofile'){
         $class4 = $class4. ' active';
     }
+    // else if ($tab === 'post'){
+    //     $class5 = $class5. ' active';
+    // }
 
 
     use App\Framework\Utilities\Session;

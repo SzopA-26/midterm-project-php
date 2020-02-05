@@ -27,7 +27,7 @@ class Comment extends Model
 
     public function select_by_username($username) {
         $sql = "SELECT * FROM comments"
-            . " WHERE `username` = :username AND `deleted_at` = NULL";
+            . " WHERE `username` = :username AND `deleted_at` is NULL";
         $data = $this->db->queryAll($sql, [
             ':username' => $username
         ]);
@@ -36,7 +36,7 @@ class Comment extends Model
 
     public function select_by_post_id($post_id) {
         $sql = "SELECT * FROM comments"
-            . " WHERE `post_id` = :post_id AND `deleted_at` = NULL";
+            . " WHERE `post_id` = :post_id AND `deleted_at` is NULL";
         $data = $this->db->queryAll($sql, [
             ':post_id' => $post_id
         ]);

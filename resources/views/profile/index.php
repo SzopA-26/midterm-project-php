@@ -9,7 +9,7 @@
                     <!-- <figcaption class="figure-caption">A caption for the above image.</figcaption> -->
                 </figure>
                 <h4>
-                    <?= $auth['username'] ?>
+                    <?= $username ?>
                 </h4>
             </div>
         </div>
@@ -19,15 +19,15 @@
                 <div class="row">
                     <div class="col">
                         <figcaption class="figure-caption">STORIES</figcaption>
-                        <h5>23</h5>
+                        <h5><?= $stories ?></h5>
                     </div>
                     <div class="col">
                         <figcaption class="figure-caption">VIEWS</figcaption>
-                        <h5>138K</h5>
+                        <h5><?= $views ?></h5>
                     </div>
                     <div class="col">
                         <figcaption class="figure-caption">FOLLOWERS</figcaption>
-                        <h5>46K</h5>
+                        <h5><?= $followers ?></h5>
                         </h4>
                     </div>
                 </div>

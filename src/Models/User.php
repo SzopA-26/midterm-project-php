@@ -38,16 +38,18 @@ class User extends Model
     }
 
     public function get_total_views($username) {
-        $posts = (new Story())->select_by_username($username);
+        $user = (new User())->select_by_username($username);
+        $posts = (new Story())->select_by_user_id($user->id);
         $views = 0;
         foreach ($posts as $post) {
-            $views += (new View())->get_post_view_count($post);
+            $views += (new View())->get_post_view_count($post->id);
         }
         return $views;
     }
 
     public function get_total_posts($username) {
-        $posts = (new Story())->select_by_username($username);
+        $user = (new User())->select_by_username($username);
+        $posts = (new Story())->select_by_user_id($user->id);
         return count($posts);
     }
 

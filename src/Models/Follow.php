@@ -24,20 +24,20 @@ class Follow extends Model
         return $data;
     }
 
-    public function select_follower_by_username($username) {
+    public function select_follower_by_user_id($user_id) {
         $sql = "SELECT * FROM follows"
-            . " WHERE `user_following` = :username";
+            . " WHERE `user_id` = :user_id";
         $data = $this->db->queryAll($sql, [
-            ':username' => $username
+            ':user_id' => $user_id
         ]);
         return $data;
     }
 
-    public function select_following_by_username($username) {
+    public function select_following_by_user_id($user_id) {
         $sql = "SELECT * FROM follows"
-            . " WHERE `user_follower` = :username";
+            . " WHERE `follower_user_id` = :user_id";
         $data = $this->db->queryAll($sql, [
-            ':username' => $username
+            ':follower_user_id' => $user_id
         ]);
         return $data;
     }

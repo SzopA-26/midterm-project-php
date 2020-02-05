@@ -34,7 +34,7 @@ class UsersController extends Controller
         $gender = $input->gender;
         
 
-        if (!$username or !$email or !$password or !$c_password or !$birthdate ) {
+        if (!$username or !$email or !$password or !$c_password or !$birthdate) {
             echo "<script>alert('Please enter your information.')</script>";
         } else if (($user = (new User())->select_by_username($username))) {
             echo "<script>alert('username already exist.')</script>";

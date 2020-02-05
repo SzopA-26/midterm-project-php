@@ -1,4 +1,4 @@
-<?php $this->layout('layouts/app' ,['tab' => 'story']) ?>
+<?php $this->layout('layouts/app', ['tab' => 'stories']) ?>
 
 <div class="row" id="title-header">
     <div class="col">
@@ -19,23 +19,23 @@
 
 <?php foreach ($publisheds as $published) : ?>
 
-<div class="published-content">
+    <div class="published-content">
 
-    <h3><?= $published->title ?></h3>
-    <figcaption class="figure-caption">
-        Published on <?= $published->published_at ?>
-        <span class="dropdown">
-            <a href="#" class="dropdown-toggle " data-toggle="dropdown" aria-haspopup="true"
-                aria-expanded="false"><span class="caret"></span></a>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                <li><a class="dropdown-item" href="/stories/edit/<?= $published->id ?>">Edit</a></li>
-                <li><a class="dropdown-item" href="/stories/delete/<?= $published->id ?>">Delete</a></li>
-                <li><a class="dropdown-item" href="/stories/unpublish/<?= $published->id ?>">Unpublish</a></li>
-            </ul>
-        </span>
-    </figcaption>
-    <hr>
-</div>
+        <a href="/stories/post/<?= $published->id ?>">
+            <h3><?= $published->title ?></h3>
+        </a>
+        <figcaption class="figure-caption">
+            Published on <?= $published->published_at ?>
+            <span class="dropdown">
+                <a href="#" class="dropdown-toggle " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="caret"></span></a>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                    <li><a class="dropdown-item" href="/stories/edit/<?= $published->id ?>">Edit</a></li>
+                    <li><a class="dropdown-item" href="/stories/delete/<?= $published->id ?>">Delete</a></li>
+                    <li><a class="dropdown-item" href="/stories/unpublish/<?= $published->id ?>">Unpublish</a></li>
+                </ul>
+            </span>
+        </figcaption>
+        <hr>
+    </div>
 
 <?php endforeach; ?>
-

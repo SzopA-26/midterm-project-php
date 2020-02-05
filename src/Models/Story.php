@@ -112,5 +112,14 @@ class Story extends Model
         $data = $this->db->queryAll($sql);
         return $data;
     }
+    
+    public function search_by_title($title) {
+        $sql = "SELECT * FROM posts "
+            . " WHERE `title` LIKE :title AND `deleted_at` is NULL AND `published_at` is NOT NULL";
+        $data = $this->db->queryAll($sql, [
+            ':title' => '%'.$title.'%'
+        ]);
+        return $data;
+    }
 
 }

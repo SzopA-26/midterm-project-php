@@ -22,13 +22,13 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class=<?= "$class1" ?> href="/admin">HOME</a>
+                    <a class="<?= $class1 ?>" href="/admin">HOME</a>
                 </li>
                 <li class="nav-item">
-                    <a class=<?= "$class1" ?> href="/admin/dashboard">DASHBOARD</a>
+                    <a class="<?= $class2 ?>" href="/admin/dashboard">DASHBOARD</a>
                 </li>
                 <li class="nav-item">
-                    <a class=<?= "$class1" ?> href="/admin/users">USERS</a>
+                    <a class="<?= $class3 ?>" href="/admin/users">USERS</a>
                 </li>
             </ul>
             <form class="form-inline" id="search-form">

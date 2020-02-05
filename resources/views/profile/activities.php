@@ -4,7 +4,6 @@
 use App\Framework\Utilities\Session;
 
 $auth = Session::read('Auth');
-
 ?>
 
 <div class="row">
@@ -70,10 +69,8 @@ $auth = Session::read('Auth');
                             <div class="modal-body">
                             </div>
 
-                            <form action="/profile/sendgift" method="post">
-                            <input type="hidden" name="gift" value="0" id="gift">
                             <div class="container">
-                                <button type="button" id="g100-btn" class="btn btn-outline-secondary" ><i class="fa fa-gift"></i> 100</button>
+                                <button data-toggle="button" type="button" id="g100-btn" class="btn btn-outline-secondary"><i class="fa fa-gift"></i> 100</button>
                                 <button type="button" id="g500-btn" class="btn btn-outline-secondary"><i class="fa fa-gift"></i> 500</button>
                                 <button type="button" id="g1000-btn" class="btn btn-outline-secondary"><i class="fa fa-gift"></i> 1000</button>
                             </div>
@@ -86,7 +83,6 @@ $auth = Session::read('Auth');
                                     <span class="fa fa-times"></span>
                                 </button>
                             </div>
-                            </form>
                         </div>
                     </div>
                 </div>
@@ -97,11 +93,11 @@ $auth = Session::read('Auth');
     <div class="col-8">
         <ul class="nav nav-tabs" id="link-tab">
             <li class="nav-item">
-                <a class="nav-link active" href="/profile/user/<?= $username ?>">Story</a>
+                <a class="nav-link" href="/profile/user/<?= $username ?>">Story</a>
             </li>
-            <!-- <li class="nav-item">
-                <a class="nav-link" href="/profile/activities/username">Activities</a>
-            </li> -->
+            <li class="nav-item">
+            <a class="nav-link active" href="/profile/activities/<?= $username ?>">Activities</a>
+            </li>
         </ul>
         <?php foreach ($posts as $post) : ?>
 

@@ -14,13 +14,6 @@
                     <a class="nav-link" href="/">HOME</a>
                 </li>
             </ul>
-            <form class="form-inline" id="search-form">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search..." aria-label="Search"
-                    id="search-input">
-                <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit" id="search-btn">
-                    <i class="fa fa-search"></i>
-                </button>
-            </form>
         </div>
         <div id="button-account">
             <button type="button" class="btn btn-outline-secondary" id="log-in-btn" data-toggle="modal"

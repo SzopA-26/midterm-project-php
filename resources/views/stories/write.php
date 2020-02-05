@@ -1,4 +1,4 @@
-<?php $this->layout('layouts/writeLayout' ,['tab' => 'story']) ?>
+<?php $this->layout('layouts/writeLayout' ,['tab' => 'stories']) ?>
 
 
 <div>

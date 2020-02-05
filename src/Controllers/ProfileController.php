@@ -22,7 +22,24 @@ class ProfileController extends Controller {
             'username' => $user->username,
             'stories' => (new User())->get_total_posts($user->username),
             'views' => (new User())->get_total_views($user->username),
-            'followers' => count((new Follow())->select_follower_by_user_id($user->id))
+            'followers' => count((new Follow())->select_follower_by_user_id($user->id)),
+            'posts' => (new Story())->select_by_user_id($user->id)
+        ]);
+    }
+
+    public function activities() {        
+        $auth = Session::read('Auth');
+        $username = $this->request->params[0];
+        if (!$username) {
+            $username = $auth['username'];
+        }
+        $user = (new User())->select_by_username($username);
+        return $this->render('profile/activities' , [
+            'username' => $user->username,
+            'stories' => (new User())->get_total_posts($user->username),
+            'views' => (new User())->get_total_views($user->username),
+            'followers' => count((new Follow())->select_follower_by_user_id($user->id)),
+            'posts' => (new Story())->select_by_user_id($user->id)
         ]);
     }
 

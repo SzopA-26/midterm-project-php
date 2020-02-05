@@ -1,15 +1,13 @@
-<?php $this->layout('layouts/app', ['tab' => 'post']) ?>
+<?php $this->layout('layouts/app', ['tab' => 'stories']) ?>
 <?php
 
 use App\Framework\Utilities\Session;
-use App\Models\Comment;
 
 $auth = Session::read('Auth');
 ?>
 
 <!-- post -->
 <div class="container">
-    <h1>POST</h1>
     <div class="card" style="margin-top: 20px; margin-bottom: 20px;">
         <div class="container" style="margin-top: 10px; margin-bottom: 10px;">
             <div class="row">
@@ -17,7 +15,7 @@ $auth = Session::read('Auth');
                     <img src="../../img/icon-profile.png" width="140" height="140">
                     <br>
                     <br>
-                    <div><?= $auth['username'] ?></div>
+                    <div><?= $username ?></div>
                 </div>
                 <div class="col">
                     <div class="card-header">
@@ -37,15 +35,14 @@ $auth = Session::read('Auth');
     </div>
 
     <!-- comment -->
-    <div class="container">
+    <div class="container" style="margin-bottom: 10px">
 
         <div class="row">
             <div class="col-1"></div>
             <div class="col-10" style="text-align: right;">
-                <textarea style="margin-bottom: 15px;" class="form-control" rows="3" id="comment" placeholder="comment"></textarea>
+                <textarea style="margin-bottom: 10px;" class="form-control" rows="3" id="comment" placeholder="comment"></textarea>
                 <button type="button" class="btn btn-outline-primary"><i class="fa fa-comments"></i></i>
                     Comment</button>
-
             </div>
             <div class="col-1"></div>
 
@@ -75,7 +72,7 @@ $auth = Session::read('Auth');
                                 </div>
                                 <div class="col">
                                     <div class="card-header">
-                                        <div style="font-size: 130%;">Comment <?= $count++ ?></div>
+                                        <div style="font-size: 65%;">Comment <?= $count++ ?></div>
                                     </div>
                                     <div class="card-body">
                                         <div><?= $comment->content ?></div>

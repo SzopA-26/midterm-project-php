@@ -8,21 +8,6 @@ use Exception;
 
 class UsersController extends Controller
 {
-    public function index()
-    {
-        $users = (new User())->all();
-        return $this->render('users/index', ['users' => $users]);
-    }
-
-    public function show()
-    {
-        if (!isset($this->request->params[0])) {
-            throw new Exception('Data Not Found');
-        }
-        $id = $this->request->params[0];
-        $user = (new User())->first($id);
-        return $this->render('users/show', ['user' => $user]);
-    }
 
     public function create() {
         $input = $this->request->input;
@@ -57,15 +42,6 @@ class UsersController extends Controller
 
     }
 
-    public function sessionSet() {
-        Session::write('user_id', 1);
-        return $this->render('users/sessionSet');
-    }
-
-    public function sessionGet() {
-        return $this->render('users/sessionGet');
-    }
-
     public function authen() {
         $input = $this->request->input;
         $email = $input->email;
@@ -85,15 +61,6 @@ class UsersController extends Controller
         } else {
             echo "<script>alert('incorrect username or password.')</script>";
         }
-    }
-
-    public function authorize() {
-        $auth = Session::read('Auth');
-
-        if (!$auth or $auth['role'] != 'Admin') {
-            return 'You have no permission';
-        }
-        return $this->render('users/sessionGet');
     }
 
     public function logout() {

@@ -12,6 +12,13 @@ nav.navbar {
 #search-input {
     width: 39vw;
 }
+#dropdown-update {
+    border-width: 0;
+}
+#update-menu {
+    width: 350px;
+    color: #05af1b;
+}
 
 
 /* index */

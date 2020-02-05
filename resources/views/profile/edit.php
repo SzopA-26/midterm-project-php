@@ -1,4 +1,4 @@
-<?php $this->layout('layouts/app', ['tab' => 'editprofile']) ?>
+<?php $this->layout('layouts/app', ['tab' => 'profile']) ?>
 <?php
 
 use App\Framework\Utilities\Session;

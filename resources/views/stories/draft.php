@@ -1,4 +1,4 @@
-<?php $this->layout('layouts/app' ,['tab' => 'story']) ?>
+<?php $this->layout('layouts/app' ,['tab' => 'stories']) ?>
 
 <div class="row" id="title-header">
     <div class="col">
@@ -19,7 +19,7 @@
 
 <?php foreach ($drafts as $draft) : ?>
 
-<div class="draft-content">
+<div class="draft-content" style="color: black;">
 
     <a href="/stories/post/<?= $draft->id ?>">
         <h3><?= $draft->title ?></h3>
@@ -37,8 +37,6 @@
         </span>
     </figcaption>
     <hr>
-
-    
 
 </div>
 <?php endforeach; ?>

@@ -21,7 +21,8 @@ class User extends Model
 
     public function update_username($old_username, $new_username) {
         $sql = "UPDATE users SET"
-            . " `username` = :new_username"
+            . " `username` = :new_username,"
+            . " `updated_at` = NOW()"
             . " WHERE `username` = :old_username";
         $data = $this->db->queryFirst($sql, [
             ':old_username' => $old_username,
@@ -32,7 +33,8 @@ class User extends Model
 
     public function update_password($password, $username) {
         $sql = "UPDATE users SET"
-            . " `password` = :password"
+            . " `password` = :password,"
+            . " `updated_at` = NOW()"
             . " WHERE `username` = :username";
         $data = $this->db->queryFirst($sql, [
             ':password' => $password,
@@ -59,6 +61,15 @@ class User extends Model
         return $data;
     }
 
+    public function select_by_user_id($user_id) {
+        $sql = "SELECT * FROM users"
+            . " WHERE id = :user_id";
+        $data = $this->db->queryFirst($sql . " LIMIT 1", [
+            ':user_id' => $user_id
+        ]);
+        return $data;
+    }
+
     public function get_total_views($username) {
         $user = (new User())->select_by_username($username);
         $posts = (new Story())->select_by_user_id($user->id);
@@ -75,4 +86,12 @@ class User extends Model
         return count($posts);
     }
 
+    public function search_by_username($username) {
+        $sql = "SELECT * FROM users "
+            . " WHERE `username` LIKE :username";
+        $data = $this->db->queryAll($sql, [
+            ':username' => '%'.$username.'%'
+        ]);
+        return $data;
+    }
 }

@@ -1,4 +1,11 @@
 <?php $this->layout('layouts/app', ['tab' => 'home']) ?>
+<?php
+use App\Framework\Utilities\Session;
+use App\Models\Comment;
+
+$auth = Session::read('Auth');
+?>
+
 
 <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
     <ol class="carousel-indicators">
@@ -47,216 +54,46 @@
     <div class="col-8">
         <h1>NEW</h1>
         <br>
+        <?php foreach ($posts as $post) : ?>
 
-        
-        <div class="row">
-            <div class="col-8">
-                <h5>Name</h5>
-                <p>detail</p>
-                <p>1/13/2020</p>
+            <div class="row">
+                <div class="col-8">
+                    <h5><?= $post->title ?></h5>
+                    <p><?= $post->content ?></p>
+                    <p><?= $post->created_at ?></p>
+                </div>
+                <div class="col">
+                    <img src="../../img/book-cover-1.jpg" alt="book-cover-1" width="100" height="150">
+                </div>
             </div>
-            <div class="col">
-                <img src="../../img/book-cover-1.jpg" alt="book-cover-1" width="100" height="150">
-            </div>
-        </div>
-        <hr class="under-line">
-        <br>
-        <br>
-        <br>
+            <hr class="under-line">
+            <br>
+            <br>
+            <br>
 
-
-        <div class="row">
-            <div class="col-8">
-                <h5>Name</h5>
-                <p>detail</p>
-                <p>1/13/2020</p>
-            </div>
-            <div class="col">
-                <img src="../../img/book-cover-2.jpg" alt="book-cover-1" width="100" height="150">
-            </div>
-        </div>
-        <hr class="under-line">
-        <br>
-        <br>
-        <br>
-        <div class="row">
-            <div class="col-8">
-                <h5>Name</h5>
-                <p>detail</p>
-                <p>1/13/2020</p>
-            </div>
-            <div class="col">
-                <img src="../../img/book-cover-3.jpg" alt="book-cover-1" width="100" height="150">
-            </div>
-        </div>
-        <hr class="under-line">
-        <br>
-        <br>
-        <br>
-        <div class="row">
-            <div class="col-8">
-                <h5>Name</h5>
-                <p>detail</p>
-                <p>1/13/2020</p>
-            </div>
-            <div class="col">
-                <img src="../../img/book-cover-4.jpg" alt="book-cover-1" width="100" height="150">
-            </div>
-        </div>
-        <hr class="under-line">
-        <br>
-        <br>
-        <br>
-        <div class="row">
-            <div class="col-8">
-                <h5>Name</h5>
-                <p>detail</p>
-                <p>1/13/2020</p>
-            </div>
-            <div class="col">
-                <img src="../../img/book-cover-1.jpg" alt="book-cover-1" width="100" height="150">
-            </div>
-        </div>
-        <hr class="under-line">
-        <br>
-        <br>
-        <br>
-        <div class="row">
-            <div class="col-8">
-                <h5>Name</h5>
-                <p>detail</p>
-                <p>1/13/2020</p>
-            </div>
-            <div class="col">
-                <img src="../../img/book-cover-1.jpg" alt="book-cover-1" width="100" height="150">
-            </div>
-        </div>
-        <hr class="under-line">
-        <br>
-        <br>
-        <div class="row">
-            <div class="col-8">
-                <h5>Name</h5>
-                <p>detail</p>
-                <p>1/13/2020</p>
-            </div>
-            <div class="col">
-                <img src="../../img/book-cover-1.jpg" alt="book-cover-1" width="100" height="150">
-            </div>
-        </div>
-        <hr class="under-line">
-        <br>
-        <br>
-        <div class="row">
-            <div class="col-8">
-                <h5>Name</h5>
-                <p>detail</p>
-                <p>1/13/2020</p>
-            </div>
-            <div class="col">
-                <img src="../../img/book-cover-1.jpg" alt="book-cover-1" width="100" height="150">
-            </div>
-        </div>
-        <hr class="under-line">
-        <br>
-        <br>
-        <div class="row">
-            <div class="col-8">
-                <h5>Name</h5>
-                <p>detail</p>
-                <p>1/13/2020</p>
-            </div>
-            <div class="col">
-                <img src="../../img/book-cover-1.jpg" alt="book-cover-1" width="100" height="150">
-            </div>
-        </div>
-        <hr class="under-line">
-        <br>
-        <br>
-        <div class="row">
-            <div class="col-8">
-                <h5>Name</h5>
-                <p>detail</p>
-                <p>1/13/2020</p>
-            </div>
-            <div class="col">
-                <img src="../../img/book-cover-1.jpg" alt="book-cover-1" width="100" height="150">
-            </div>
-        </div>
-        <hr class="under-line">
-        <br>
-        <br>
-
-
+        <?php endforeach; ?>
     </div>
 
     <!-- </div> -->
     <div class="col">
         <h1>Trend</h1>
+        <?php $x=1; ?>
+        <?php foreach($trends as $trend) : ?>
         <br>
         <div class="card">
             <div class="card-body">
-                <h5 class="card-title">1. Name</h5>
-                <h6 class="card-subtitle mb-2 text-muted">type</h6>
+                <h5 class="card-title"><?= $x++?>. <?= $trend->title ?></h5>
+                <h6 class="card-subtitle mb-2 text-muted"><?= $trend->username ?></h6>
                 <img src="../../img/trend-1.jpg" alt="trend-1" width="100" height="100">
-                <p class="card-text">............................................</p>
-                <p class="card-text">............................................</p>
-                <a href="#" class="card-link">link</a>
-                <a href="#" class="card-link">Another link</a>
+                <p class="card-text"><?= $trend->content ?></p>
+                <!-- <p class="card-text">............................................</p> -->
+                <a href="/post/" class="card-link">link</a>
             </div>
         </div>
-        <br>
-        <div class="card">
-            <div class="card-body">
-                <h5 class="card-title">2. Name</h5>
-                <h6 class="card-subtitle mb-2 text-muted">type</h6>
-                <img src="../../img/trend-1.jpg" alt="trend-1" width="100" height="100">
-                <p class="card-text">.....................................................</p>
-                <p class="card-text">.....................................................</p>
-                <a href="#" class="card-link">link</a>
-                <a href="#" class="card-link">Another link</a>
-            </div>
-        </div>
-        <br>
-        <div class="card">
-            <div class="card-body">
-                <h5 class="card-title">3. Name</h5>
-                <h6 class="card-subtitle mb-2 text-muted">type</h6>
-                <img src="../../img/trend-1.jpg" alt="trend-1" width="100" height="100">
-                <p class="card-text">.....................................................</p>
-                <p class="card-text">.....................................................</p>
-                <a href="#" class="card-link">link</a>
-                <a href="#" class="card-link">Another link</a>
-            </div>
-        </div>
-        <br>
-        <div class="card">
-            <div class="card-body">
-                <h5 class="card-title">4. Name</h5>
-                <h6 class="card-subtitle mb-2 text-muted">type</h6>
-                <img src="../../img/trend-1.jpg" alt="trend-1" width="100" height="100">
-                <p class="card-text">.....................................................</p>
-                <p class="card-text">.....................................................</p>
-                <a href="#" class="card-link">link</a>
-                <a href="#" class="card-link">Another link</a>
-            </div>
-        </div>
-        <br>
-        <div class="card">
-            <div class="card-body">
-                <h5 class="card-title">5. Name</h5>
-                <h6 class="card-subtitle mb-2 text-muted">type</h6>
-                <img src="../../img/trend-1.jpg" alt="trend-1" width="100" height="100">
-                <p class="card-text">.....................................................</p>
-                <p class="card-text">.....................................................</p>
-                <a href="#" class="card-link">link</a>
-                <a href="#" class="card-link">Another link</a>
-            </div>
-        </div>
-    </div>
+        <?php endforeach; ?>
+        
 
 
 
 
 </div>
-

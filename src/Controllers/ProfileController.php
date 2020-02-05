@@ -76,4 +76,9 @@ class ProfileController extends Controller {
         echo "<script>window.location.href='/profile/edit';</script>";
     }
 
+    public function sendgift(){
+        $input = $this->request->input;
+        var_dump($input->gift);
+    }
+
 }

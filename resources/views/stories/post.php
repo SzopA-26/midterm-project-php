@@ -70,6 +70,7 @@ $auth = Session::read('Auth');
                                 <div class="col-2" style="text-align: center;">
                                     <img src="../../img/icon-profile.png" width="90" height="90">
                                     <br>
+                                    <br>
                                     <div><?= $comment->username ?> </div>
                                 </div>
                                 <div class="col">

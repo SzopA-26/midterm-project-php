@@ -32,7 +32,6 @@ class UsersController extends Controller
         $c_password = $input->c_password;
         $birthdate = $input->birthdate;
         $gender = $input->gender;
-        
 
         if (!$username or !$email or !$password or !$c_password or !$birthdate) {
             echo "<script>alert('Please enter your information.')</script>";

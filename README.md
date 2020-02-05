@@ -1,4 +1,4 @@
-# php-starter
+<!-- # php-starter
 > Simple PHP Framework
 
 ## Installation
@@ -68,4 +68,33 @@ DB_PASSWORD=your-secret
   * `Framework` (namespace `App\Framework`) เก็บคลาสที่เขียนไว้ให้แล้ว ได้แก่ 
     * คลาสเกี่ยวกับการเชื่อมต่อฐานข้อมูล (`App\Framework\Connection`) 
     * คลาสอรรถประโยชน์ (`App\Framework\Utilities`)
-  * `Models` เก็บ Model Classes ที่เป็น ORM ของตารางในฐานข้อมูล (namespace `App\Models`)
+  * `Models` เก็บ Model Classes ที่เป็น ORM ของตารางในฐานข้อมูล (namespace `App\Models`) -->
+
+
+
+## Web JAU
+    - เป็นเว็บสำหรับการเขียนและอ่านเรื่องราวต่างๆ (story , post , etc.)
+
+    
+
+## System & Pages
+    > Admin
+        - Dashboard สามารถดูสรุปข้อมูลต่างๆได้
+        - สามารถ ban user ได้ โดยมีการ request จาก user มา
+        - 
+    > User (Already login)
+        - Profile หน้าสำหรับดูข้อมูลส่วนตัว สามารถ edit ข้อมูลบางส่วนได้
+        - Other Profile คือหน้า Profile ของคนอื่น ดูข้อมูลได้บางส่วน
+        - สามารเขียน Story และ ดู Story ได้
+        - สามารถ comment Story ได้
+        - Post เป็นหน้าสำหรับโพสต่างๆ สามารถดู comment ได้
+        - มีระบบ Send Gift คือการส่งของขวัญให้กับบุคคลที่ชื่นชอบ
+        - 
+
+    > Guest user (Not login)
+        - สามารถดูหน้า Home ได้
+        - ไม่สามารถเข้าถึง Story (เขียนและอ่าน Story ไม่ได้)
+        - ไม่สามารถเข้าถึงหน้า Profile ทั้งของตัวเองและคนอื่น
+        - ไม่สามารถ search ได้
+        - มีระบบ Sign up สำหรับลงทะเบียน
+        - มีระบบ Login สำหรับเข้าใช้งานส่วนที่ lock ไว้สำหรับ user

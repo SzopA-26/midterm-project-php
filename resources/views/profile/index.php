@@ -69,8 +69,10 @@ $auth = Session::read('Auth');
                             <div class="modal-body">
                             </div>
 
+                            <form action="/profile/sendgift" method="post">
+                            <input type="hidden" name="gift" value="0" id="gift">
                             <div class="container">
-                                <button type="button" id="g100-btn" class="btn btn-outline-secondary"><i class="fa fa-gift"></i> 100</button>
+                                <button type="button" id="g100-btn" class="btn btn-outline-secondary" ><i class="fa fa-gift"></i> 100</button>
                                 <button type="button" id="g500-btn" class="btn btn-outline-secondary"><i class="fa fa-gift"></i> 500</button>
                                 <button type="button" id="g1000-btn" class="btn btn-outline-secondary"><i class="fa fa-gift"></i> 1000</button>
                             </div>
@@ -79,10 +81,11 @@ $auth = Session::read('Auth');
                                 <button class="btn btn-outline-info border-left-0 border" type="submit" onclick="">Submit
                                     <span class="fa fa-check"></span>
                                 </button>
-                                <button class="btn btn-outline-danger border-left-0 border" type="submit" data-dismiss="modal" >Cancel
+                                <button class="btn btn-outline-danger border-left-0 border" data-dismiss="modal" >Cancel
                                     <span class="fa fa-times"></span>
                                 </button>
                             </div>
+                            </form>
                         </div>
                     </div>
                 </div>

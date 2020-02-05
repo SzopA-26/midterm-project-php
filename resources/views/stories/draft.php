@@ -28,7 +28,7 @@
             <a href="#" class="dropdown-toggle " data-toggle="dropdown" aria-haspopup="true"
                 aria-expanded="false"><span class="caret"></span></a>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                <li><a class="dropdown-item" href="#">Edit</a></li>
+                <li><a class="dropdown-item" href="/stories/edit/<?= $draft->id ?>">Edit</a></li>
                 <li><a class="dropdown-item" href="/stories/delete/<?= $draft->id ?>">Delete</a></li>
                 <li><a class="dropdown-item" href="/stories/publish/<?= $draft->id ?>">Publish</a></li>
             </ul>

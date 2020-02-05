@@ -33,11 +33,23 @@ class StoriesController extends Controller
     }
 
     public function write() {
-        return $this->render('stories/write');
+        return $this->render('stories/write', [
+            'title' => "",
+            'content' => "",
+            'type' => 'new',
+            'post_id' => 0
+        ]);
     }
 
     public function edit() {
-        
+        $post_id = $this->request->params[0];
+        $post = (new Story())->select_by_post_id($post_id);
+         return $this->render('stories/write', [
+            'title' => $post->title,
+            'content' => $post->content,
+            'type' => 'update',
+            'post_id' => $post->id
+        ]);
     }
 
     public function delete() {
@@ -58,14 +70,12 @@ class StoriesController extends Controller
         echo "<script>window.location.href='/stories/published';</script>";
     }
 
-    public function ajax_request() {
-        $input = $this->request->input;
-        return $input;
-    }
-
     public function save_draft() {
         $auth = Session::read('Auth');
         $input = $this->request->input;
+        if (!$input->title) {
+            return 'fail';
+        }
         $total_posts = count((new Story())->select_by_user_id($auth['id']));
         // return $input->title . " " . $input->content;
         (new Story())->insert($input->title, $input->content, $auth['id']);
@@ -74,6 +84,11 @@ class StoriesController extends Controller
         } return 'success';
     }
 
+    public function update() {
+        $input = $this->request->input;
+        (new Story())->update($input->title, $input->content, $input->post_id);
+        return 'success';
+    }
     
 
 }

@@ -19,8 +19,8 @@ class Story extends Model
 
     public function update($title, $content, $post_id) {
         $sql = "UPDATE posts SET"
-                ." `title` = :title"
-                ." `content` = :content" 
+                ." `title` = :title,"
+                ." `content` = :content," 
                 ." `updated_at` = NOW()"
                 ." WHERE (`id` = :post_id)";
         $data = $this->db->queryFirst($sql, [

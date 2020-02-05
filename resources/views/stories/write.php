@@ -3,12 +3,19 @@
 
 <div>
     <label for="title">Post title</label>
-    <input type="text" name="title" id="title-input">
+    <input type="text" name="title" id="title-input" value="<?= $title ?>">
+    <input type="hidden" id="post_id" value="<?= $post_id ?>">
 </div>
     
-<div id="summernote"></div>
-<div id="content"></div>
+<div id="summernote"><?= $content ?></div>
+
 <br>
-<div class="col text-right">
-    <button type="button" class="btn btn-outline-secondary" id="submit-story-btn">Submit</button>
-</div>
+<?php if ($type == 'new'): ?>
+    <div class="col text-right">
+        <button type="button" class="btn btn-outline-secondary" id="submit-story-btn">Submit</button>
+    </div>
+<?php else : ?>
+    <div class="col text-right">
+        <button type="button" class="btn btn-outline-secondary" id="update-story-btn">Update</button>
+    </div>
+<?php endif; ?>

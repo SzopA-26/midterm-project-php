@@ -45,7 +45,7 @@ div.card {
 a.nav-link, span.caret {
     color: #000;
 }
-#write-story-btn, #submit-story-btn {
+#write-story-btn, #submit-story-btn, #update-story-btn {
     color: #05af1b;
     background-color: #fff;
     border-color: #05af1b;
@@ -56,6 +56,10 @@ a.nav-link, span.caret {
     border-color: #05af1b;
 }
 #submit-story-btn:hover {
+    color: #fff;
+    background-color: #05af1b;
+}
+#update-story-btn:hover {
     color: #fff;
     background-color: #05af1b;
 }

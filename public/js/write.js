@@ -2,18 +2,15 @@ $(document).ready(function() {
     $('#summernote').summernote({
         placeholder: 'write your story...',
         tabsize: 2,
-        height: 100
+        height: 450,
+        value: 'aaaa'
     });
 
     $('#submit-story-btn').on('click', function() {
         var title = $("#title-input").val();
         var contentcode = $('#summernote').summernote('code');
-        // console.log(markupStr)
-        // document.getElementById("content").innerHTML = markupStr;
-        // window.location.href='/home/index'
         $.ajax({
             url: '/stories/save_draft',
-            // url: '/stories/ajax_request',
             data: {
                 title: title,
                 content: contentcode
@@ -27,6 +24,25 @@ $(document).ready(function() {
             } else {
                 alert('stories cannot save.')
             }
+        })
+    });
+
+    $('#update-story-btn').on('click', function() {
+        var id = $('#post_id').val();
+        var title = $("#title-input").val();
+        var contentcode = $('#summernote').summernote('code');
+        $.ajax({
+            url: '/stories/update',
+            data: {
+                title: title,
+                content: contentcode,
+                post_id: id
+            },
+            method: 'POST'
+        }).done(function (message) {
+            console.log(message)
+            alert('stories update success.')
+            window.location.href='/stories'
         })
     });
 })

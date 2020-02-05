@@ -78,11 +78,11 @@ $auth = Session::read('Auth');
                                     </div>
                                     <div class="card-body">
                                         <div><?= $comment->content ?></div>
-                                        <div class="card-footer text-muted">
+                                    </div>
+                                    <div class="card-footer text-muted">
 
                                             <span style="font-size: 90%;"><?= $comment->created_at ?></span>
                                         </div>
-                                    </div>
 
                                 </div>
                             </div>
@@ -92,12 +92,7 @@ $auth = Session::read('Auth');
                 <?php endforeach; ?>
             </div>
 
-
-
             <div class="col-1"></div>
         </div>
-
     </div>
-
-
 </div>

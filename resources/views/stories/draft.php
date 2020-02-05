@@ -38,8 +38,7 @@
     </figcaption>
     <hr>
 
-    <?= abc ?>
-    <?php echo abc ?>
+    
 
 </div>
 <?php endforeach; ?>

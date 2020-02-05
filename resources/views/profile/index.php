@@ -54,7 +54,6 @@ $auth = Session::read('Auth');
             <!-- Modal gift-->
             <div class="modal" id="gift-modal" role="dialog">
                 <div class="modal-dialog modal-sm">
-
                     <!-- Modal content-->
                     <div class="modal-content">
                         <div class="container">

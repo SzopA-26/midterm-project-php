@@ -111,6 +111,28 @@ class StoriesController extends Controller
         ]);
 
     }
+
+    public function comment(){
+        $auth = Session::read('Auth');
+        $input = $this->request->input;
+        $content = $input->content;
+        $post_id = $input->post_id;
+        //$comment =
+        //$post = (new Story())->select_by_post_id($post_id);
+        $comments =(new Comment())->insert($content,$post_id,$auth['id']);
+        $post = (new Story())->select_by_post_id($post_id);
+
+        return $this->redirect('stories/post/'.$post_id, [
+            'post' => $post,
+            'comments' => $comments
+
+            // 'title' => $post->title,
+            // 'content' => $post->content,
+            // 'type' => 'update',
+            // 'post_id' => $post->id
+        ]);
+
+    }
     
 
 }

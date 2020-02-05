@@ -1,12 +1,15 @@
 
 <?php 
-    $class1 = 'nav-link'; $class2 = 'nav-link'; $class3 = 'nav-link';
+    $class1 = 'nav-link'; $class2 = 'nav-link'; $class3 = 'nav-link'; $class4 = 'nav-link';
     if ($tab === 'home') {
         $class1 = $class1 . ' active';
     } else if ($tab === 'profile') {
         $class2 = $class2 . ' active';
     } else if ($tab === 'stories') {
         $class3 = $class3 . ' active';
+    }
+    else if ($tab === 'editprofile'){
+        $class4 = $class4. ' active';
     }
 
 

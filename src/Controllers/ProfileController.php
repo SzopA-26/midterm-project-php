@@ -26,4 +26,15 @@ class ProfileController extends Controller {
         ]);
     }
 
+    public function edit() {
+        $auth = Session::read('Auth');
+        $user = (new User())->select_by_username($auth['username']);
+        return $this->render('profile/edit' , [
+            'username' => $user->username,
+            'stories' => (new User())->get_total_posts($user->username),
+            'views' => (new User())->get_total_views($user->username),
+            'followers' => count((new Follow())->select_follower_by_user_id($user->id))
+        ]);
+    }
+
 }

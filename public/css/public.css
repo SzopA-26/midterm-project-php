@@ -27,8 +27,39 @@ div.card {
     margin-top: 15px;
     margin-bottom: 15px;
 }
-#follow-btn{
+#cancel-btn{
     width: 100%;
+    color: rgb(240, 153, 23);
+    border-color: rgb(240, 153, 23);
+}
+#cancel-btn:hover{
+    background-color: rgb(240, 153, 23);
+    color: white;
+    border-color: rgb(240, 153, 23);
+}
+#edit-btn{
+    width: 100%;
+    color: rgb(240, 27, 144);
+    border-color: rgb(240, 27, 144);
+}
+#edit-btn:hover {
+    background-color: rgb(240, 27, 144);
+    color: white;
+    border-color: rgb(240, 27, 144);
+}
+#follow-btn{
+    color: white;
+    width: 100%;
+}
+#gift-btn{
+    color: rgb(55, 199, 235);
+    border-color: rgb(55, 199, 235);
+    
+    width: 100%;
+}
+#gift-btn:hover {
+    background-color: rgb(55, 199, 235);
+    color: white;
 }
 
 /* story */
@@ -55,7 +86,45 @@ a.nav-link, span.caret {
     background-color: #fff;
     border-color: #05af1b;
 }
-#submit-story-btn:hover {
+
+#g100-btn:hover {
+    background-color: rgb(240, 218, 23);
+    color: white;
+    border-color: rgb(240, 218, 23);
+}
+
+#g100-btn {
+    /* margin: auto;
+    display: block; */
+    color: rgb(240, 218, 23);
+    border-color: rgb(240, 218, 23);
+}
+
+#g500-btn:hover {
+    background-color: rgb(240, 153, 23);
+    color: white;
+    border-color: rgb(240, 153, 23);
+}
+
+#g500-btn {
+    /* margin: auto;
+    display: block; */
+    color: rgb(240, 153, 23);
+    border-color: rgb(240, 153, 23);
+}
+
+#g1000-btn:hover {
+    background-color: rgb(240, 92, 23);
+    color: white;
+    border-color: rgb(240, 92, 23);
+}
+
+#g1000-btn {
+    /* margin: auto;
+    display: block; */
+    color: rgb(240, 92, 23);
+    border-color: rgb(240, 92, 23);
+}#submit-story-btn:hover {
     color: #fff;
     background-color: #05af1b;
 }

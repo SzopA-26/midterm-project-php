@@ -55,9 +55,9 @@ class Story extends Model
 
     public function select_by_user_id($user_id) {
         $sql = "SELECT * FROM posts"
-            . " WHERE (`user_id` = 7 AND `deleted_at` is null)";
+            . " WHERE (`user_id` = :user_id AND `deleted_at` is null)";
         $data = $this->db->queryAll($sql, [
-            // ':user_id' => 7
+            ':user_id' => $user_id
         ]);
         return $data;
     }

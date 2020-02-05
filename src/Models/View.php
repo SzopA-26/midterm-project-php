@@ -12,4 +12,6 @@ class View extends Model {
         ]);
         return count($data);
     }
+
+
 }

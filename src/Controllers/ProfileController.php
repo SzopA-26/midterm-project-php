@@ -11,8 +11,9 @@ use Exception;
 
 class ProfileController extends Controller {
 
-    public function index($username = null) {        
+    public function user() {        
         $auth = Session::read('Auth');
+        $username = $this->request->params[0];
         if (!$username) {
             $username = $auth['username'];
         }

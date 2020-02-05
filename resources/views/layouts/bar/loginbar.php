@@ -1,3 +1,4 @@
+
 <?php 
     $class1 = 'nav-link'; $class2 = 'nav-link'; $class3 = 'nav-link';
     if ($tab === 'home') {
@@ -7,6 +8,10 @@
     } else if ($tab === 'stories') {
         $class3 = $class3 . ' active';
     }
+
+
+    use App\Framework\Utilities\Session;
+    $auth = Session::read('Auth');
 ?>
 
 <!-- link -->
@@ -24,7 +29,7 @@
                 <a class=<?= "$class1" ?> href="/">HOME</a>
             </li>
             <li class="nav-item">
-                <a class=<?= "$class2" ?> href="/profile">PROFILE</a>
+                <a class=<?= "$class2" ?> href="/profile/user/<?= $auth['username'] ?>">PROFILE</a>
             </li>
             <li class="nav-item">
                 <a class=<?= "$class3" ?> href="/stories/draft">STORIES</a>

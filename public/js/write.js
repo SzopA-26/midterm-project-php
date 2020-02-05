@@ -27,22 +27,5 @@ $(document).ready(function() {
         })
     });
 
-    $('#update-story-btn').on('click', function() {
-        var id = $('#post_id').val();
-        var title = $("#title-input").val();
-        var contentcode = $('#summernote').summernote('code');
-        $.ajax({
-            url: '/stories/update',
-            data: {
-                title: title,
-                content: contentcode,
-                post_id: id
-            },
-            method: 'POST'
-        }).done(function (message) {
-            console.log(message)
-            alert('stories update success.')
-            window.location.href='/stories'
-        })
-    });
+    
 })

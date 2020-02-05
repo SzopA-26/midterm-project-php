@@ -21,7 +21,7 @@ class HomeController extends Controller
                 break;
             } 
             if ((new Story())->select_by_post_id($post_id)) {
-                $trends[$i] = (new Story())->select_by_post_id($post_id);
+                $trends[$i] = (new Story())->select_by_post_id_join_users($post_id);
                 $i++;
             }
         }

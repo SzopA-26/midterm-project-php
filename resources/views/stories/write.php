@@ -2,7 +2,7 @@
 
 
 <div>
-    <label for="title">Post title</label>
+    <label for="title">Story title</label>
     <input type="text" name="title" id="title-input" value="<?= $title ?>">
     <input type="hidden" id="post_id" value="<?= $post_id ?>">
 </div>

@@ -97,9 +97,14 @@ class StoriesController extends Controller
     public function post(){
         $post_id = $this->request->params[0];
         $post = (new Story())->select_by_post_id($post_id);
-        $user = (new User())->select_by_user_id($post->user_id);
-        $comments =(new Comment())->select_by_post_id($post_id);
 
+        // echo '<pre>';
+        // var_dump($post);
+        // echo '</pre>';
+
+        $user = (new User())->select_by_user_id($post->user_id);
+        $comments =(new Comment())->select_by_post_id_join_users($post_id);
+        
         return $this->render('stories/post', [
             'post' => $post,
             'comments' => $comments,
@@ -118,8 +123,7 @@ class StoriesController extends Controller
         $input = $this->request->input;
         $content = $input->content;
         $post_id = $input->post_id;
-        //$comment =
-        //$post = (new Story())->select_by_post_id($post_id);
+
         $comments =(new Comment())->insert($content,$post_id,$auth['id']);
         $post = (new Story())->select_by_post_id($post_id);
 
@@ -127,10 +131,6 @@ class StoriesController extends Controller
             'post' => $post,
             'comments' => $comments
 
-            // 'title' => $post->title,
-            // 'content' => $post->content,
-            // 'type' => 'update',
-            // 'post_id' => $post->id
         ]);
 
     }

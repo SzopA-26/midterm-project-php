@@ -19,6 +19,7 @@ class ProfileController extends Controller {
         }
         $user = (new User())->select_by_username($username);
         return $this->render('profile/index' , [
+            'user' => $user,
             'username' => $user->username,
             'stories' => (new User())->get_total_posts($user->username),
             'views' => (new User())->get_total_views($user->username),
@@ -96,6 +97,26 @@ class ProfileController extends Controller {
     public function sendgift(){
         $input = $this->request->input;
         var_dump($input->gift);
+    }
+
+    public function draft() {
+        $auth = Session::read('Auth');
+        $username = $this->request->params[0];
+        if ($auth['role'] != 'admin') {
+            echo "<script>alert('you not have permission')</script>";
+            echo "<script>window.location.href='/';</script>";
+        } else {
+            $user = (new User())->select_by_username($username);
+            $drafts = (new Story())->select_draft_by_user_id($user->id);
+            return $this->render('profile/index' , [
+                'user' => $user,
+                'username' => $user->username,
+                'stories' => (new User())->get_total_posts($user->username),
+                'views' => (new User())->get_total_views($user->username),
+                'followers' => count((new Follow())->select_follower_by_user_id($user->id)),
+                'posts' => $drafts
+            ]);
+        }
     }
 
     

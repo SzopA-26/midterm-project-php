@@ -50,14 +50,16 @@ class UsersController extends Controller
         $user = (new User())->select_by_email($email);
 
         if ($user && password_verify($password, $user->password)) {
-            Session::write('Auth', [
-                'id' => $user->id,
-                'username' => $user->username,
-                'role' => $user->role
-            ]);
-
-
-            return $this->redirect('/');
+            if ($user->ban == 1) {
+                echo "<script>alert('your account has been baned.')</script>";
+            } else {
+                Session::write('Auth', [
+                    'id' => $user->id,
+                    'username' => $user->username,
+                    'role' => $user->role
+                ]);
+            }
+            echo "<script>window.location.href='/';</script>";
         } else {
             echo "<script>alert('incorrect username or password.')</script>";
         }
@@ -66,5 +68,14 @@ class UsersController extends Controller
     public function logout() {
         Session::destroy();
         $this->redirect('/');
+    }
+
+    public function ban() {
+        $username = $this->request->params[0];
+        $user = (new User())->select_by_username($username);
+        (new User())->update_ban_by_user_id($user->id);
+        // var_dump($username);
+        echo "<script>window.location.href='/profile/user/" . $username ."';</script>";
+
     }
 }

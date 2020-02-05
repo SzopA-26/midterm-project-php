@@ -1,4 +1,4 @@
-<?php $this->layout('layouts/app', ['tab' => 'user']) ?>
+<?php $this->layout('layouts/app', ['tab' => 'users']) ?>
 
 <h3>Users</h3>
 <br>

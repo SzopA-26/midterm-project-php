@@ -110,13 +110,11 @@ $auth = Session::read('Auth');
     <div class="col-8">
         <ul class="nav nav-tabs" id="link-tab">
             <li class="nav-item">
-                <a class="nav-link active" href="/profile/user/<?= $username ?>">Story</a>
+                <a class="nav-link" href="/profile/user/<?= $username ?>">Story</a>
             </li>
-            <?php if ($auth['role'] == 'admin') : ?>   
-                <li class="nav-item">
-                    <a class="nav-link" href="/profile/draft/<?= $username ?>">Draft</a>
-                </li>
-            <?php endif; ?>
+            <li class="nav-item active">
+                <a class="nav-link active" href="/profile/draft/<?= $username ?>">Draft</a>
+            </li>
         </ul>
         <?php foreach ($posts as $post) : ?>
 
@@ -126,7 +124,7 @@ $auth = Session::read('Auth');
                         <h3><?= $post->title ?></h3>
                     </a>
                     <figcaption class="figure-caption">
-                        created on <?= $post->created_at ?>
+                        published on <?= $post->published_at ?>
                     </figcaption>
                 </div>
             </div>

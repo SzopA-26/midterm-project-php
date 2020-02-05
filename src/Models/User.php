@@ -54,7 +54,7 @@ class User extends Model
 
     public function select_by_username($username) {
         $sql = "SELECT * FROM users"
-            . " WHERE username = :username";
+            . " WHERE `username` = :username";
         $data = $this->db->queryFirst($sql . " LIMIT 1", [
             ':username' => $username
         ]);
@@ -63,7 +63,7 @@ class User extends Model
 
     public function select_by_user_id($user_id) {
         $sql = "SELECT * FROM users"
-            . " WHERE id = :user_id";
+            . " WHERE `id` = :user_id";
         $data = $this->db->queryFirst($sql . " LIMIT 1", [
             ':user_id' => $user_id
         ]);
@@ -91,6 +91,23 @@ class User extends Model
             . " WHERE `username` LIKE :username";
         $data = $this->db->queryAll($sql, [
             ':username' => '%'.$username.'%'
+        ]);
+        return $data;
+    }
+
+    public function update_ban_by_user_id($user_id) {
+        $user = (new User())->select_by_user_id($user_id);
+        if ($user->ban == 1) {
+            $sql = "UPDATE users SET"
+                . " `ban` = 0, `updated_at` = NOW()"
+                . " WHERE `id` = :user_id";
+        } else {
+            $sql = "UPDATE users SET"
+                . " `ban` = 1, `updated_at` = NOW()"
+                . " WHERE `id` = :user_id";
+        }
+        $data = $this->db->queryFirst($sql, [
+            ':user_id' => $user_id,
         ]);
         return $data;
     }

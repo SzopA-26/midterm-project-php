@@ -42,8 +42,18 @@ class Story extends Model
     }
 
     public function select_by_post_id($post_id) {
-        $sql = "SELECT * FROM posts JOIN `users` ON `posts`.`user_id`=`users`.`id`"
-            . " WHERE (`posts`.`id` = :post_id AND `deleted_at` is NULL AND `published_at` is NOT NULL)";
+        $sql = "SELECT * FROM posts "
+            . " WHERE (`id` = :post_id AND `deleted_at` is NULL AND `publish` = 1)";
+        $data = $this->db->queryFirst($sql. " LIMIT 1", [
+            ':post_id' => $post_id
+        ]);
+        return $data;
+    }
+
+    public function select_by_post_id_join_users($post_id) {
+        $sql = "SELECT `posts`.`id`,`users`.`username`,`posts`.`title`,`posts`.`content`,`posts`.`publish`,`posts`.`published_at`"
+            ." FROM posts JOIN `users` ON `posts`.`user_id`=`users`.`id`"
+            . " WHERE (`posts`.`id` = :post_id AND `deleted_at` is NULL AND `publish` = 1)";
         $data = $this->db->queryFirst($sql. " LIMIT 1", [
             ':post_id' => $post_id
         ]);
@@ -52,7 +62,7 @@ class Story extends Model
 
     public function select_by_user_id($user_id) {
         $sql = "SELECT * FROM posts"
-            . " WHERE (`user_id` = :user_id AND `deleted_at` is null)";
+            . " WHERE (`user_id` = :user_id AND `deleted_at` is null AND `publish` = 1)";
         $data = $this->db->queryAll($sql, [
             ':user_id' => $user_id
         ]);
@@ -61,7 +71,7 @@ class Story extends Model
 
     public function select_by_new($n) {
         $sql = "SELECT * FROM posts JOIN users ON `posts`.`user_id`=`users`.`id`
-        WHERE `deleted_at` IS NULL AND `published_at` IS NOT NULL ORDER BY `posts`.`id` DESC LIMIT 6 ;";
+        WHERE `deleted_at` IS NULL AND `publish` = 1 ORDER BY `posts`.`id` DESC LIMIT 6 ;";
             
         $data = $this->db->queryAll($sql, [
             ':n' => $n
@@ -90,19 +100,16 @@ class Story extends Model
     public function update_publish($post_id) {
         $post = (new Story())->select_by_post_id($post_id);
         if ($post->publish == 1) {
-            $pub = 0;
             $sql = "UPDATE posts SET"
-                . " `publish` = :pub"
+                . " `publish` = 0, `published_at` = NOW()"
                 . " WHERE `id` = :post_id AND `deleted_at` is NULL";
         } else {
-            $pub = 1;
             $sql = "UPDATE posts SET"
-                . " `publish` = :pub, `published_at` = NOW()"
+                . " `publish` = 1, `published_at` = NOW()"
                 . " WHERE `id` = :post_id AND `deleted_at` is NULL";
         }
         $data = $this->db->queryFirst($sql, [
             ':post_id' => $post_id,
-            ':pub' => $pub
         ]);
         return $data;
     }
@@ -115,7 +122,7 @@ class Story extends Model
 
     public function search_by_title($title) {
         $sql = "SELECT * FROM posts "
-            . " WHERE `title` LIKE :title AND `deleted_at` is NULL AND `published_at` is NOT NULL";
+            . " WHERE `title` LIKE :title AND `deleted_at` is NULL AND `publish` = 1";
         $data = $this->db->queryAll($sql, [
             ':title' => '%'.$title.'%'
         ]);

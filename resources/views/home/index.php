@@ -55,15 +55,25 @@ $auth = Session::read('Auth');
         <h1>NEW</h1>
         <br>
         <?php foreach ($posts as $post) : ?>
-            <div class="row">
-                <div class="col-8">
-                    <h5><?= $post->title ?></h5>
+            <div class="row justify-content-center">
+                <div class="col-10">
+
+                    <?php if ($auth) : ?>
+                        <a href="/stories/post/<?= $post->id ?>">
+                    <?php endif; ?>
+
+                        <h5><?= $post->title ?></h5>
+
+                    <?php if ($auth) : ?>
+                        </a>
+                    <?php endif; ?>
+                
                     <p><?= $post->content ?></p>
                     <p><?= $post->created_at ?></p>
                 </div>
-                <div class="col">
+                <!-- <div class="col">
                     <img src="../../img/book-cover-1.jpg" alt="book-cover-1" width="100" height="150">
-                </div>
+                </div> -->
             </div>
             <hr class="under-line">
             <br>
@@ -81,12 +91,16 @@ $auth = Session::read('Auth');
         <br>
         <div class="card">
             <div class="card-body">
-                <h5 class="card-title"><?= $trend->title ?></h5>
-                <h6 class="card-subtitle mb-2 text-muted"><?= $trend->username ?></h6>
-                <img src="../../img/trend-1.jpg" alt="trend-1" width="100" height="100">
-                <p class="card-text"><?= $trend->content ?></p>
-                <!-- <p class="card-text">............................................</p> -->
-                <a href="/post/" class="card-link">link</a>
+                <?php if ($auth) : ?>
+                    <a href="/stories/post/<?= $trend->id ?>">
+                <?php endif; ?>
+                <h4 class="card-title"><?= $trend->title ?></h5>
+                <?php if ($auth) : ?>
+                    </a>
+                <?php endif; ?>
+                <!-- <img src="../../img/trend-1.jpg" alt="trend-1" width="100" height="100"> -->
+                <hr>
+                <h6 class="card-subtitle mb-2 text-muted"><?= $trend->username ?> --> <?= $trend->published_at ?></h6>
             </div>
         </div>
         <?php endforeach; ?>

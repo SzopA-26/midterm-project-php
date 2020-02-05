@@ -36,25 +36,7 @@ $auth = Session::read('Auth');
                 <a class="<?= $class3 ?>" href="/stories/draft">STORIES</a>
             </li>
         </ul>
-        <div class="dropdown">
-            <button class="btn btn-outline-secondary " type="button" id="dropdown-update" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fa fa-bell"></i>
-                <!-- UPDATE -->
-            </button>
-            <div class="dropdown-menu" id="update-menu" aria-labelledby="dropdownMenu2">
-                <button class="dropdown-item" type="button">
-                    <div class="row">
-                        <div class="col-4">
-                            <img src="../../img/trend-1.jpg" width="80" height="80" style="margin-right: 0; margin-left: auto;">
-                        </div>
-                        <div class="col">
-                            <div>user1 like your post</div>
-                            <div>12/01/2020 21:00</div>
-                        </div>
-                    </div>
-                </button>
-            </div>
-        </div>
+
 
         <form class="form-inline" id="search-form" action="/search/user" method="post">
             <input required class="form-control mr-sm-2" type="search" placeholder="Search..." aria-label="Search" id="search-input" name="search_input">

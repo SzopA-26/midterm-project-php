@@ -35,11 +35,16 @@ class Comment extends Model
     }
 
     public function select_by_post_id($post_id) {
-        $sql = "SELECT * FROM comments"
-            . " WHERE `post_id` = :post_id AND `deleted_at` is NULL";
+        // $sql = "SELECT * FROM comments"
+        //     . " WHERE `post_id` = :post_id AND `deleted_at` is NULL";
+        $sql = "SELECT *"
+                ." FROM users JOIN comments ON `users`.`id`=`comments`.`user_id`"
+                ." WHERE `post_id` = :post_id AND `deleted_at` is NULL";
         $data = $this->db->queryAll($sql, [
             ':post_id' => $post_id
         ]);
         return $data;
     }
+
+
 }

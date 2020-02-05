@@ -4,6 +4,10 @@ namespace App\Controllers;
 
 use App\Framework\Utilities\Session;
 use App\Models\Story;
+use App\Models\User;
+use App\Models\Follow;
+use App\Models\Comment;
+
 use Exception;
 
 class StoriesController extends Controller
@@ -88,6 +92,24 @@ class StoriesController extends Controller
         $input = $this->request->input;
         (new Story())->update($input->title, $input->content, $input->post_id);
         return 'success';
+    }
+
+    public function post(){
+        $auth = Session::read('Auth');
+        $post_id = $this->request->params[0];
+        $post = (new Story())->select_by_post_id($post_id);
+        $comments =(new Comment())->select_by_post_id($post_id);
+
+        return $this->render('stories/post', [
+            'post' => $post,
+            'comments' => $comments
+
+            // 'title' => $post->title,
+            // 'content' => $post->content,
+            // 'type' => 'update',
+            // 'post_id' => $post->id
+        ]);
+
     }
     
 

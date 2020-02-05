@@ -10,27 +10,31 @@
 </div>
 <ul class="nav nav-tabs" id="link-tab">
     <li class="nav-item">
-        <a class="nav-link active" href="/stories/draft">Drafts (1)</a>
+        <a class="nav-link active" href="/stories/draft">Drafts (<?= count($drafts) ?>)</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="/stories/published">Published (2)</a>
+        <a class="nav-link" href="/stories/published">Published (<?= count($publisheds) ?>)</a>
     </li>
 </ul>
 
+<?php foreach ($drafts as $draft) : ?>
+
 <div class="draft-content">
-    <h3>Star Galactic(3)</h3>
-    <p>in garaxy far far away...</p>
+
+    <h3><?= $draft->title ?></h3>
     <figcaption class="figure-caption">
-        Last edited 3 days ago
+        Last edited <?= $draft->updated_at ?>
         <span class="dropdown">
             <a href="#" class="dropdown-toggle " data-toggle="dropdown" aria-haspopup="true"
                 aria-expanded="false"><span class="caret"></span></a>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                 <li><a class="dropdown-item" href="#">Edit</a></li>
-                <li><a class="dropdown-item" href="#">Delete</a></li>
-                <li><a class="dropdown-item" href="#">Publish</a></li>
+                <li><a class="dropdown-item" href="/stories/delete/<?= $draft->id ?>">Delete</a></li>
+                <li><a class="dropdown-item" href="/stories/publish/<?= $draft->id ?>">Publish</a></li>
             </ul>
         </span>
     </figcaption>
     <hr>
+
 </div>
+<?php endforeach; ?>

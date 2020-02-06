@@ -20,7 +20,7 @@ class AdminController extends Controller
         }
         arsort($views);
 
-        $d = 0; $m=0; $y=0;
+        $d = 0; $m=0; $y=0; 
         foreach ($views as $post_id => $view) {
             if ($d > 5 && $m > 5 && $y>5) {
                 break;
@@ -38,11 +38,16 @@ class AdminController extends Controller
                 $y++;
             }
         }
+        $x=0;
+        while($x<12){
+            $posts_in_year[$x++] =(new Story())->count_post_by_published_of_month($x); 
+        }
         return $this->render('admin/dashboard',[
             'daily_posts' => $daily_posts ,
             'month_posts' =>  $month_posts,
             'year_posts' => $year_posts,
-            'views' => $views
+            'views' => $views,
+            'posts_in_year' => $posts_in_year
         ]);
     }
 

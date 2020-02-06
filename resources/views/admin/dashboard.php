@@ -32,17 +32,17 @@
                                                 <th>Story</th>
                                                 <th>Name</th>
                                                 <th>View</th>
-                                                
+
                                             </tr>
-                                            
-                                            <?php foreach($daily_posts as $post) : ?>
-                                            <tr>
-                                                <td><?= $post->title ?></td>
-                                                <td><?= $post->username ?></td>
-                                                <td><?= $views[$post->id] ?></td>
-                                            </tr>
+
+                                            <?php foreach ($daily_posts as $post) : ?>
+                                                <tr>
+                                                    <td><?= $post->title ?></td>
+                                                    <td><?= $post->username ?></td>
+                                                    <td><?= $views[$post->id] ?></td>
+                                                </tr>
                                             <?php endforeach; ?>
-                                            
+
                                         </table>
                                     </div>
 
@@ -59,12 +59,12 @@
                                                 <th>Name</th>
                                                 <th>View</th>
                                             </tr>
-                                            <?php foreach($month_posts as $post) : ?>
-                                            <tr>
-                                                <td><?= $post->title ?></td>
-                                                <td><?= $post->username ?></td>
-                                                <td><?= $views[$post->id] ?></td>
-                                            </tr>
+                                            <?php foreach ($month_posts as $post) : ?>
+                                                <tr>
+                                                    <td><?= $post->title ?></td>
+                                                    <td><?= $post->username ?></td>
+                                                    <td><?= $views[$post->id] ?></td>
+                                                </tr>
                                             <?php endforeach; ?>
                                         </table>
                                     </div>
@@ -82,12 +82,12 @@
                                                 <th>Name</th>
                                                 <th>View</th>
                                             </tr>
-                                            <?php foreach($year_posts as $post) : ?>
-                                            <tr>                                                
-                                                <td><?= $post->title ?></td>
-                                                <td><?= $post->username ?></td>
-                                                <td><?= $views[$post->id] ?></td>
-                                            </tr>
+                                            <?php foreach ($year_posts as $post) : ?>
+                                                <tr>
+                                                    <td><?= $post->title ?></td>
+                                                    <td><?= $post->username ?></td>
+                                                    <td><?= $views[$post->id] ?></td>
+                                                </tr>
                                             <?php endforeach; ?>
                                         </table>
                                     </div>
@@ -99,65 +99,70 @@
                 </div>
             </div>
         </div>
-
-
-    </div>
-
-    <!-- </div>
-<div class="card ">
-    <div class="card-header">
-        <ul class="nav nav-tabs card-header-tabs pull-left" id="myTab" role="tablist">
-            <li class="nav-item">
-                <a class="nav-link active" id="daily-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Daily</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" id="weekly-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Weekly</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" id="monthly-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Monthly</a>
-            </li>
-        </ul>
-    </div>
-    <div class="card-body">
-        <div class="tab-content" id="myTabContent">
-            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">...</div>
-            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                <div class="row">
-                    <div class="col-4">
-                        <h3>Most View</h3>
-                        <br>
-                        <table style="width:100%">
-                            <tr>
-                                <th>Name</th>
-                                <th>View</th>
-                            </tr>
-                            <tr>
-                                <td>Zee</td>
-                                <td>10000</td>
-                            </tr>
-                            <tr>
-                                <td>Bob</td>
-                                <td>9995</td>
-                            </tr>
-                            <tr>
-                                <td>Viva</td>
-                                <td>8957</td>
-                            </tr>
-                            <tr>
-                                <td>Fit</td>
-                                <td>5221</td>
-                            </tr>
-                            <tr>
-                                <td>Tee</td>
-                                <td>4532</td>
-                            </tr>
-                        </table>
-                    </div>
-
-                  
-                </div>
-            </div>
-            <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div>
+        <div class="col">
+            <canvas id="post-chart" style="max-width: 500px; margin:auto;"></canvas>
         </div>
     </div>
-</div> -->
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+
+<?php 
+$data2script = [];
+foreach($posts_in_year as $post) {
+    array_push($data2script, (int) $post->count_published);
+}
+
+$data2script = "[" . implode(", ", $data2script) . "]";
+
+?>
+
+<script>
+    var ctx = document.getElementById("post-chart").getContext('2d');
+    var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+            datasets: [{
+                label: '# of Stories',
+                
+                data: <?= $data2script ?>,
+                backgroundColor: [
+                    'rgb(255, 124, 248)',
+                    'rgb(245, 72, 138)',
+                    'rgb(245, 72, 72)',
+                    'rgb(255, 131, 131)',
+                    'rgb(252, 190, 161)',
+                    'rgb(253, 199, 82)',
+                    'rgb(61, 221, 226)',
+                    'rgb(131, 150, 255)',
+                    'rgb(205, 72, 245)',
+                    'rgb(130, 34, 194)', 'rgb(81, 93, 255)', 'rgb(2, 0, 92)'
+                ],
+                borderColor: [
+                    'rgb(255, 124, 248)',
+                    'rgb(245, 72, 138)',
+                    'rgb(245, 72, 72)',
+                    'rgb(255, 131, 131)',
+                    'rgb(252, 190, 161)',
+                    'rgb(253, 199, 82)',
+                    'rgb(61, 221, 226)',
+                    'rgb(131, 150, 255)',
+                    'rgb(205, 72, 245)',
+                    'rgb(130, 34, 194)', 'rgb(81, 93, 255)', 'rgb(2, 0, 92)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });
+</script>

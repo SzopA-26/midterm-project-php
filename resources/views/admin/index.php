@@ -10,14 +10,14 @@
                 <div class="carousel-item active">
                     <img src="../../img/book-try.jpg" class="d-block w-100" alt="..." width="500" height="500">
                     <div class="carousel-caption d-none d-md-block">
-                        <h5>First slide label</h5>
-                        <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                        <h5>Welcome to JAU</h5>
+                        <p>This web is about story. You can try to read some stories or write some stories </p>
                     </div>
                 </div>
                 <div class="carousel-item">
                     <img src="../../img/book-try-2.jpg" class="d-block w-100" alt="..." width="500" height="500">
                     <div class="carousel-caption d-none d-md-block">
-                        <h5>Second slide label</h5>
+                        <h5>Write amazing stories if you want to be a writer</h5>
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
                     </div>
                 </div>

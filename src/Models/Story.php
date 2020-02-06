@@ -137,4 +137,31 @@ class Story extends Model
         return $data;
     }
 
+    public function select_by_post_id_date($post_id) {
+        $sql = "SELECT * FROM posts "
+            . " WHERE (`id` = :post_id AND `deleted_at` is NULL AND `publish` = 1 AND DATE(`published_at`) = DATE(NOW()))";
+        $data = $this->db->queryFirst($sql. " LIMIT 1", [
+            ':post_id' => $post_id
+        ]);
+        return $data;
+    }
+
+    public function select_by_post_id_month($post_id) {
+        $sql = "SELECT * FROM posts "
+            . " WHERE (`id` = :post_id AND `deleted_at` is NULL AND `publish` = 1 AND MONTH(`published_at`) = MONTH(NOW()))";
+        $data = $this->db->queryFirst($sql. " LIMIT 1", [
+            ':post_id' => $post_id
+        ]);
+        return $data;
+    }
+
+    public function select_by_post_id_year($post_id) {
+        $sql = "SELECT * FROM posts "
+            . " WHERE (`id` = :post_id AND `deleted_at` is NULL AND `publish` = 1 AND YEAR(`published_at`) = YEAR(NOW()))";
+        $data = $this->db->queryFirst($sql. " LIMIT 1", [
+            ':post_id' => $post_id
+        ]);
+        return $data;
+    }
+
 }

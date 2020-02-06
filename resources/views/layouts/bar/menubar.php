@@ -56,7 +56,7 @@
                                     <i class="fa fa-user"></i>
                                 </span>
                             </span>
-                            <input type="email" class="form-control " id="email-login" placeholder="Enter email" name="email">
+                            <input required type="email" class="form-control " id="email-login" placeholder="Enter email" name="email">
                         </div>
                         <br>
 
@@ -67,7 +67,7 @@
                                     <i class="fa fa-lock"></i>
                                 </span>
                             </span>
-                            <input type="password" class="form-control " id="password-login" placeholder="Enter password"
+                            <input required type="password" class="form-control " id="password-login" placeholder="Enter password"
                                 name="password">
                         </div>
                     </div>
@@ -120,7 +120,7 @@
                                     <i class="fa fa-envelope"></i>
                                 </span>
                             </span>
-                            <input type="email" class="form-control " id="email" placeholder="Enter email" name="email">
+                            <input required type="email" class="form-control " id="email" placeholder="Enter email" name="email">
                         </div>
                         <br>
                         <div class="input-group">
@@ -129,7 +129,7 @@
                                     <i class="fa fa-user"></i>
                                 </span>
                             </span>
-                            <input type="username" class="form-control " id="username" placeholder="Enter username"
+                            <input required type="username" class="form-control " id="username" placeholder="Enter username (at least 6 character)"
                                 name="username">
                         </div>
                         <br>
@@ -140,7 +140,7 @@
                                     <i class="fa fa-unlock"></i>
                                 </span>
                             </span>
-                            <input type="password" class="form-control" id="password" placeholder="Enter password"
+                            <input required type="password" class="form-control" id="password" placeholder="Enter password (at least 6 character)"
                                 name="password">
                         </div>
                         <br>
@@ -151,12 +151,12 @@
                                     <i class="fa fa-lock"></i>
                                 </span>
                             </span>
-                            <input type="password" class="form-control " id="c_password"
-                                placeholder="Confirm password" name="c_password">
+                            <input required type="password" class="form-control " id="c_password"
+                                placeholder="Confirm password (at least 6 character)" name="c_password">
                         </div>
                         <br>
                         <div>
-                            <input id="datepicker" width="276" placeholder="Date of birth" name="birthdate">
+                            <input required readonly id="datepicker" width="276" placeholder="Date of birth" name="birthdate">
                             <script>
                                 $('#datepicker').datepicker({
                                     uiLibrary: 'bootstrap4',

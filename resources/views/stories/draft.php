@@ -21,9 +21,9 @@
 
 <div class="draft-content" style="color: black;">
 
-    <a href="/stories/post/<?= $draft->id ?>">
+    <!-- <a href="/stories/post/<?= $draft->id ?>"> -->
         <h3><?= $draft->title ?></h3>
-    </a>
+    <!-- </a> -->
     <figcaption class="figure-caption">
         Last edited <?= $draft->updated_at ?>
         <span class="dropdown">

@@ -93,6 +93,9 @@ a.nav-link, span.caret {
     background-color: #fff;
     border-color: #05af1b;
 }
+#submit-story-btn, #update-story-btn {
+    margin-bottom: 20px;
+}
 
 #g100-btn:hover {
     background-color: rgb(240, 218, 23);

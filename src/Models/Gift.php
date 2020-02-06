@@ -69,4 +69,13 @@ class Gift extends Model
         return $data;
     }
 
+    public function select_gift_by_month($m) {
+        $sql = "SELECT * FROM gifts "
+            ." WHERE MONTH(`created_at`) = :m";
+        $data = $this->db->queryAll($sql, [
+            ':m' => $m
+        ]);
+        return $data;
+    }
+
 }

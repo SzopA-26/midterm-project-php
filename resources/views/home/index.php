@@ -25,7 +25,7 @@ $auth = Session::read('Auth');
         <div class="carousel-item">
             <img src="../../img/book-try-2.jpg" class="d-block w-100" alt="..." width="500" height="500">
             <div class="carousel-caption d-none d-md-block">
-                <h5 >Write amazing stories if you want to be a great writer</h5>
+                <h5>Write amazing stories if you want to be a great writer</h5>
                 <p style="color: black">You can write everything you want but not impolite</p>
             </div>
         </div>
@@ -55,7 +55,7 @@ $auth = Session::read('Auth');
     <div class="col-8">
         <h1>NEW</h1>
         <br>
-        <?php $x=1 ?>
+        <?php $x = 1 ?>
         <?php foreach ($posts as $post) : ?>
             <div class="row justify-content-center">
                 <div class="col-10">
@@ -64,17 +64,17 @@ $auth = Session::read('Auth');
                         <a href="/stories/post/<?= $post->id ?>">
                         <?php endif; ?>
 
-                        <h4 ><?= $post->title ?>  </h4>
+                        <h4><?= $post->title ?> </h4>
 
                         <?php if ($auth) : ?>
                         </a>
                     <?php endif; ?>
-                
+
                     <!-- <p><?= $post->content ?></p> -->
                     <p class="card-subtitle mb-2 text-muted"><?= $post->username ?> --> <?= $post->created_at ?></p>
                 </div>
                 <!-- <div class="col">
-                    <img src="../../img/book-cover-<?=$x++?>.jpg" alt="book-cover-1" width="100" height="150">
+                    <img src="../../img/book-cover-<?= $x++ ?>.jpg" alt="book-cover-1" width="100" height="150">
                 </div> -->
             </div>
             <hr class="under-line">

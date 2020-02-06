@@ -71,8 +71,19 @@ class AdminController extends Controller
 
         $x=0;
         while($x<12){
-            $posts_in_year[$x++] =(new Story())->count_post_by_published_of_month($x); 
+            $posts_in_year[$x] =(new Story())->count_post_by_published_of_month($x); 
+
+            $gift_per_month = 0;
+            $gifts_of_month = (new Gift())->select_gift_by_month($x);
+            foreach ($gifts_of_month as $gift) {
+                $gift_per_month += $gift->value;
+            }
+            $gifts_in_year[$x] = $gift_per_month;
+
+            $x++;
         }
+
+
 
         return $this->render('admin/dashboard',[
             'weekly_posts' => $weekly_posts ,
@@ -82,7 +93,8 @@ class AdminController extends Controller
             'weekly_gifts' => $weekly_gifts ,
             'monthly_gifts' =>  $monthly_gifts,
             'yearly_gifts' => $yearly_gifts,
-            'posts_in_year' => $posts_in_year
+            'posts_in_year' => $posts_in_year,
+            'gifts_in_year' => $gifts_in_year
         ]);
     }
 

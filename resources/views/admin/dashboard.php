@@ -113,7 +113,7 @@
     <div class="col-6">
         <div class="card ">
             <div class="card-header">
-                <div style="font-size:130%; text-align: center; margin-bottom: 10px">TOP GIFT USERS</div>
+                <div style="font-size:130%; text-align: center; margin-bottom: 10px">TOP POINT USERS</div>
 
                 <ul class="nav nav-tabs card-header-tabs pull-left" id="myTab" role="tablist">
                     <li class="nav-item">
@@ -209,24 +209,13 @@
             </div>
         </div>
     </div>
-</div>
-
-
-<div class="card ">
-    <div class="card-header">
-        <ul class="nav nav-tabs card-header-tabs pull-left" id="myTab" role="tablist">
-            <li class="nav-item">
-                <a class="nav-link active" id="daily-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Daily</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" id="weekly-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Weekly</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" id="monthly-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Monthly</a>
-            </li>
-        </ul>
+    <div class="col">
+        <canvas id="gift-chart" style="max-width: 500px; margin:auto;"></canvas>
     </div>
 </div>
+
+
+
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
 
@@ -245,7 +234,7 @@ $data2script = "[" . implode(", ", $data2script) . "]";
     var myChart = new Chart(ctx, {
         type: 'bar',
         data: {
-            labels: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+            labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
             datasets: [{
                 label: '# of Stories',
 
@@ -275,6 +264,66 @@ $data2script = "[" . implode(", ", $data2script) . "]";
                     'rgb(130, 34, 194)', 'rgb(81, 93, 255)', 'rgb(2, 0, 92)'
                 ],
                 borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });
+</script>
+
+<?php
+$data2script = [];
+foreach ($gifts_in_year as $gift) {
+    array_push($data2script, (int) $gift);
+}
+
+$data2script = "[" . implode(", ", $data2script) . "]";
+
+?>
+
+
+<script>
+    var ctx = document.getElementById("gift-chart").getContext('2d');
+    var myChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+            datasets: [{
+                label: 'Value of Gifts',
+
+                data: <?= $data2script ?>,
+                backgroundColor: [
+                    'rgba(255, 124, 248,1)',
+                    'rgba(245, 72, 138,1)',
+                    'rgba(245, 72, 72,1)',
+                    'rgba(255, 131, 131,1)',
+                    'rgba(252, 190, 161,1)',
+                    'rgba(253, 199, 82,1)',
+                    'rgba(61, 221, 226,1)',
+                    'rgba(131, 150, 255,1)',
+                    'rgba(205, 72, 245,1)',
+                    'rgba(130, 34, 194,1)', 'rgba(81, 93, 255,1)', 'rgba(2, 0, 92,1)'
+                ],
+                borderColor: [
+                    'rgb(255, 124, 248)',
+                    'rgb(245, 72, 138)',
+                    'rgb(245, 72, 72)',
+                    'rgb(255, 131, 131)',
+                    'rgb(252, 190, 161)',
+                    'rgb(253, 199, 82)',
+                    'rgb(61, 221, 226)',
+                    'rgb(131, 150, 255)',
+                    'rgb(205, 72, 245)',
+                    'rgb(130, 34, 194)', 'rgb(81, 93, 255)', 'rgb(2, 0, 92)'
+                ],
+                borderWidth: 5
             }]
         },
         options: {

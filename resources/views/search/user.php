@@ -15,7 +15,7 @@
         </form>
     </div>
     <div class="col-md-10">
-        <h2 style="margin-left: -90px">Result(<?= count($users) ?>): "<?= $search_input ?>"</h2>
+        <h2 style="margin-left: -90px">Result(<?= count($users) ?>): " <?= $search_input ?> "</h2>
     </div>
 </div>
 

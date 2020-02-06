@@ -5,7 +5,7 @@ namespace App\Controllers;
 use App\Framework\Utilities\Session;
 use App\Models\Story;
 use App\Models\User;
-use App\Models\Follow;
+use App\Models\View;
 use App\Models\Comment;
 
 use Exception;
@@ -57,21 +57,42 @@ class StoriesController extends Controller
     }
 
     public function delete() {
+        $auth = Session::read('Auth');
         $post_id = $this->request->params[0];
+        $post = (new Story())->select_by_post_id($post_id);
+        $user = (new User())->select_by_user_id($post->user_id);
         $post = (new Story())->delete($post_id);
-        echo "<script>window.location.href='/stories/draft';</script>";
+        if ($auth['role'] == 'admin') {
+            return $this->redirect('/profile/user/'.$user->username);
+        } else {
+            echo "<script>window.location.href='/stories/draft';</script>";
+        }
     }
 
     public function publish() {
+        $auth = Session::read('Auth');
         $post_id = $this->request->params[0];
-        $post = (new Story())->update_publish($post_id);
-        echo "<script>window.location.href='/stories/draft';</script>";
+        $post = (new Story())->select_by_post_id($post_id);
+        $user = (new User())->select_by_user_id($post->user_id);
+        (new Story())->update_publish($post_id);
+        if ($auth['role'] == 'admin') {
+            return $this->redirect('/profile/user/'.$user->username);
+        } else {
+            echo "<script>window.location.href='/stories/draft';</script>";
+        }
     }
 
     public function unpublish() {
+        $auth = Session::read('Auth');
         $post_id = $this->request->params[0];
-        $post = (new Story())->update_publish($post_id);
-        echo "<script>window.location.href='/stories/published';</script>";
+        $post = (new Story())->select_by_post_id($post_id);
+        $user = (new User())->select_by_user_id($post->user_id);
+        (new Story())->update_publish($post_id);
+        if ($auth['role'] == 'admin') {
+            return $this->redirect('/profile/user/'.$user->username);
+        } else {
+            echo "<script>window.location.href='/stories/draft';</script>";
+        }
     }
 
     public function save_draft() {
@@ -95,15 +116,18 @@ class StoriesController extends Controller
     }
 
     public function post(){
+        $auth = Session::read('Auth');
         $post_id = $this->request->params[0];
         $post = (new Story())->select_by_post_id($post_id);
 
         // echo '<pre>';
         // var_dump($post);
         // echo '</pre>';
-
         $user = (new User())->select_by_user_id($post->user_id);
         $comments =(new Comment())->select_by_post_id_join_users($post_id);
+        if ($post->publish == 1 && $user->username != $auth['username']) {
+            (new View())->insert($auth['id'], $post_id);
+        }
         
         return $this->render('stories/post', [
             'post' => $post,

@@ -38,7 +38,7 @@ $auth = Session::read('Auth');
         </ul>
 
 
-        <form class="form-inline" id="search-form" action="/search/user" method="post">
+        <form class="form-inline" id="search-form" action="/search/story" method="post">
             <input required class="form-control mr-sm-2" type="search" placeholder="Search..." aria-label="Search" id="search-input" name="search_input">
             <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit" id="search-btn">
                 <i class="fa fa-search"></i>

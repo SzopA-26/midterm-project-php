@@ -51,7 +51,7 @@ class UsersController extends Controller
 
         if ($user && password_verify($password, $user->password)) {
             if ($user->ban == 1) {
-                echo "<script>alert('your account has been baned.')</script>";
+                echo "<script>alert('your account has been banned.')</script>";
             } else {
                 Session::write('Auth', [
                     'id' => $user->id,
@@ -76,6 +76,5 @@ class UsersController extends Controller
         (new User())->update_ban_by_user_id($user->id);
         // var_dump($username);
         echo "<script>window.location.href='/profile/user/" . $username ."';</script>";
-
     }
 }

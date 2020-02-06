@@ -62,14 +62,14 @@ $auth = Session::read('Auth');
                         <a href="/stories/post/<?= $post->id ?>">
                     <?php endif; ?>
 
-                        <h5><?= $post->title ?></h5>
+                        <h4 ><?= $post->title ?></h4>
 
                     <?php if ($auth) : ?>
                         </a>
                     <?php endif; ?>
                 
-                    <p><?= $post->content ?></p>
-                    <p><?= $post->created_at ?></p>
+                    <!-- <p><?= $post->content ?></p> -->
+                    <p class="card-subtitle mb-2 text-muted"><?= $post->username ?> --> <?= $post->created_at ?></p>
                 </div>
                 <!-- <div class="col">
                     <img src="../../img/book-cover-1.jpg" alt="book-cover-1" width="100" height="150">

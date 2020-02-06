@@ -32,8 +32,8 @@ $auth = Session::read('Auth');
                         <h5><?= $views ?></h5>
                     </div>
                     <div class="col">
-                        <figcaption class="figure-caption">FOLLOWERS</figcaption>
-                        <h5><?= $followers ?></h5>
+                        <figcaption class="figure-caption">GIFT</figcaption>
+                        <h5><?= $gifts ?></h5>
                         </h4>
                     </div>
                 </div>

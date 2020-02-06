@@ -33,8 +33,8 @@ $auth = Session::read('Auth');
                         <h5><?= $views ?></h5>
                     </div>
                     <div class="col">
-                        <figcaption class="figure-caption">FOLLOWERS</figcaption>
-                        <h5><?= $followers ?></h5>
+                        <figcaption class="figure-caption">GIFT</figcaption>
+                        <h5><?= $gifts ?></h5>
                         </h4>
                     </div>
                 </div>
@@ -54,7 +54,7 @@ $auth = Session::read('Auth');
 
             <!-- Modal gift-->
             <div class="modal" id="gift-modal" role="dialog">
-                <div class="modal-dialog modal-sm">
+                <div class="modal-dialog modal-m">
                     <!-- Modal content-->
                     <div class="modal-content">
                         <div class="container">
@@ -70,8 +70,10 @@ $auth = Session::read('Auth');
                             </div>
 
                             <form action="/profile/sendgift" method="post">
-                                <input type="hidden" name="gift" value="0" id="gift">
+                                <input type="hidden" name="value" value="0" id="gift">
+                                <input type="hidden" name="username" value="<?= $username ?>">
                                 <div class="container">
+                                    <button type="button" id="g50-btn" class="btn btn-outline-secondary"><i class="fa fa-gift"></i> 50</button>
                                     <button type="button" id="g100-btn" class="btn btn-outline-secondary"><i class="fa fa-gift"></i> 100</button>
                                     <button type="button" id="g500-btn" class="btn btn-outline-secondary"><i class="fa fa-gift"></i> 500</button>
                                     <button type="button" id="g1000-btn" class="btn btn-outline-secondary"><i class="fa fa-gift"></i> 1000</button>
@@ -93,14 +95,13 @@ $auth = Session::read('Auth');
         <?php endif; ?>
 
         <?php if ($auth['role'] == 'admin') : ?>
-            <a type="button" class="btn btn-outline" id="edit-btn" href="/users/ban/<?= $user->username ?>"
-            style="margin-top: 15px;margin-bottom: 15px;">
+            <a type="button" class="btn btn-outline" id="edit-btn" href="/users/ban/<?= $user->username ?>" style="margin-top: 15px;margin-bottom: 15px;">
                 <strong>
-                <?php if ($user->ban == 0) : ?>
-                    BAN
-                <?php else: ?>
-                    UNBAN
-                <?php endif; ?>
+                    <?php if ($user->ban == 0) : ?>
+                        BAN
+                    <?php else : ?>
+                        UNBAN
+                    <?php endif; ?>
                 </strong>
             </a>
         <?php endif; ?>
@@ -112,7 +113,7 @@ $auth = Session::read('Auth');
             <li class="nav-item">
                 <a class="nav-link active" href="/profile/user/<?= $username ?>">Story</a>
             </li>
-            <?php if ($auth['role'] == 'admin') : ?>   
+            <?php if ($auth['role'] == 'admin') : ?>
                 <li class="nav-item">
                     <a class="nav-link" href="/profile/draft/<?= $username ?>">Draft</a>
                 </li>
@@ -126,7 +127,16 @@ $auth = Session::read('Auth');
                         <h3><?= $post->title ?></h3>
                     </a>
                     <figcaption class="figure-caption">
-                        created on <?= $post->created_at ?>
+                        updated on <?= $post->updated_at ?>
+                        <?php if ($auth['role'] == 'admin') : ?>
+                            <span class="dropdown">
+                                <a href="#" class="dropdown-toggle " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="caret"></span></a>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                    <li><a class="dropdown-item" href="/stories/delete/<?= $post->id ?>">Delete</a></li>
+                                    <li><a class="dropdown-item" href="/stories/unpublish/<?= $post->id ?>">Unpublish</a></li>
+                                </ul>
+                            </span>
+                        <?php endif; ?>
                     </figcaption>
                 </div>
             </div>

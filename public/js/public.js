@@ -18,6 +18,9 @@ $(document).ready(function () {
     $('#g1000-btn').on('click', function() {
         $('#gift').attr('value',1000)
     });
+    $('#g50-btn').on('click', function() {
+        $('#gift').attr('value',50)
+    });
 
 
 })

@@ -2,13 +2,16 @@
 $class1 = 'nav-link';
 $class2 = 'nav-link';
 $class3 = 'nav-link';
+$active_admin = "";
 if ($tab === 'home') {
     $class1 = $class1 . ' active';
 } else if ($tab === 'profile') {
     $class2 = $class2 . ' active';
 } else if ($tab === 'stories') {
     $class3 = $class3 . ' active';
-}
+} else if ($tab == 'dashboard' || $tab == 'users') {
+    $active_admin = "active";
+} 
 
 use App\Framework\Utilities\Session;
 
@@ -37,7 +40,7 @@ $auth = Session::read('Auth');
             </li>
         </ul>
         <div class="dropdown">
-            <button class="btn btn-outline-secondary " type="button" id="dropdown-update" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <button class="btn btn-outline-secondary <?= $active_admin ?>" type="button" id="dropdown-update" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <!-- <i class="fa fa-bell"></i> -->
                 ADMIN
             </button>
@@ -46,7 +49,7 @@ $auth = Session::read('Auth');
                 <a class="dropdown-item" href="/admin/users">USERS</a>
             </div>
         </div>
-        <form class="form-inline" id="search-form" action="/search/user" method="post">
+        <form class="form-inline" id="search-form" action="/search/story" method="post">
             <input required class="form-control mr-sm-2" type="search" placeholder="Search..." aria-label="Search" id="search-input" name="search_input">
             <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit" id="search-btn">
                 <i class="fa fa-search"></i>

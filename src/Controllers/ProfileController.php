@@ -6,7 +6,7 @@ use App\Framework\Utilities\Session;
 use App\Models\User;
 use App\Models\Follow;
 use App\Models\Story;
-
+use App\Models\Gift;
 use Exception;
 
 class ProfileController extends Controller {
@@ -18,40 +18,50 @@ class ProfileController extends Controller {
             $username = $auth['username'];
         }
         $user = (new User())->select_by_username($username);
+        $gifts = (new Gift())->select_gift_by_user_id($user->id);
+        $point = 0;
+        foreach ($gifts as $gift) {
+            $point += $gift->value;
+        }
         return $this->render('profile/index' , [
             'user' => $user,
             'username' => $user->username,
             'stories' => (new User())->get_total_posts($user->username),
-            'views' => (new User())->get_total_views($user->username),
-            'followers' => count((new Follow())->select_follower_by_user_id($user->id)),
-            'posts' => (new Story())->select_by_user_id($user->id)
+            'gifts' => $point,
+            'posts' => (new Story())->select_by_user_id($user->id),
+            'views' => (new User())->get_total_views($user->username)
         ]);
     }
 
-    public function activities() {        
-        $auth = Session::read('Auth');
-        $username = $this->request->params[0];
-        if (!$username) {
-            $username = $auth['username'];
-        }
-        $user = (new User())->select_by_username($username);
-        return $this->render('profile/activities' , [
-            'username' => $user->username,
-            'stories' => (new User())->get_total_posts($user->username),
-            'views' => (new User())->get_total_views($user->username),
-            'followers' => count((new Follow())->select_follower_by_user_id($user->id)),
-            'posts' => (new Story())->select_by_user_id($user->id)
-        ]);
-    }
+    // public function activities() {        
+    //     $auth = Session::read('Auth');
+    //     $username = $this->request->params[0];
+    //     if (!$username) {
+    //         $username = $auth['username'];
+    //     }
+    //     $user = (new User())->select_by_username($username);
+    //     return $this->render('profile/activities' , [
+    //         'username' => $user->username,
+    //         'stories' => (new User())->get_total_posts($user->username),
+    //         'views' => (new User())->get_total_views($user->username),
+    //         'followers' => count((new Follow())->select_follower_by_user_id($user->id)),
+    //         'posts' => (new Story())->select_by_user_id($user->id)
+    //     ]);
+    // }
 
     public function edit() {
         $auth = Session::read('Auth');
         $user = (new User())->select_by_username($auth['username']);
+        $gifts = (new Gift())->select_gift_by_user_id($user->id);
+        $point = 0;
+        foreach ($gifts as $gift) {
+            $point += $gift->value;
+        }
         return $this->render('profile/edit' , [
             'username' => $user->username,
             'stories' => (new User())->get_total_posts($user->username),
+            'gifts' => $point,
             'views' => (new User())->get_total_views($user->username),
-            'followers' => count((new Follow())->select_follower_by_user_id($user->id))
         ]);
     }
 
@@ -95,8 +105,16 @@ class ProfileController extends Controller {
     }
 
     public function sendgift(){
+        $auth = Session::read('Auth');
         $input = $this->request->input;
-        var_dump($input->gift);
+        $user = (new User())->select_by_username($input->username);
+        (new Gift())->insert($user->id, $auth['id'], $input->value);
+        $gifts = (new Gift())->select_gift_by_user_id($user->id);
+        $point = 0;
+        foreach ($gifts as $gift) {
+            $point += $gift->value;
+        }
+        return $this->redirect('profile/user/'.$user->username );
     }
 
     public function draft() {
@@ -108,12 +126,17 @@ class ProfileController extends Controller {
         } else {
             $user = (new User())->select_by_username($username);
             $drafts = (new Story())->select_draft_by_user_id($user->id);
-            return $this->render('profile/index' , [
+            $gifts = (new Gift())->select_gift_by_user_id($user->id);
+            $point = 0;
+            foreach ($gifts as $gift) {
+                $point += $gift->value;
+            }
+            return $this->render('profile/draft' , [
                 'user' => $user,
                 'username' => $user->username,
                 'stories' => (new User())->get_total_posts($user->username),
                 'views' => (new User())->get_total_views($user->username),
-                'followers' => count((new Follow())->select_follower_by_user_id($user->id)),
+                'gifts' => $point,
                 'posts' => $drafts
             ]);
         }

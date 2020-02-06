@@ -33,8 +33,8 @@ $auth = Session::read('Auth');
                         <h5><?= $views ?></h5>
                     </div>
                     <div class="col">
-                        <figcaption class="figure-caption">FOLLOWERS</figcaption>
-                        <h5><?= $followers ?></h5>
+                        <figcaption class="figure-caption">GIFT</figcaption>
+                        <h5><?= $gifts ?></h5>
                         </h4>
                     </div>
                 </div>
@@ -70,7 +70,8 @@ $auth = Session::read('Auth');
                             </div>
 
                             <form action="/profile/sendgift" method="post">
-                                <input type="hidden" name="gift" value="0" id="gift">
+                                <input type="hidden" name="value" value="0" id="gift">
+                                <input type="hidden" name="username" value="<?= $username ?>" >
                                 <div class="container">
                                     <button type="button" id="g100-btn" class="btn btn-outline-secondary"><i class="fa fa-gift"></i> 100</button>
                                     <button type="button" id="g500-btn" class="btn btn-outline-secondary"><i class="fa fa-gift"></i> 500</button>
@@ -120,11 +121,9 @@ $auth = Session::read('Auth');
 
             <div class="card">
                 <div class="card-body">
-                    <a href="/stories/post/<?= $post->id ?>">
-                        <h3><?= $post->title ?></h3>
-                    </a>
+                    <h3><?= $post->title ?></h3>
                     <figcaption class="figure-caption">
-                        published on <?= $post->published_at ?>
+                        updated on <?= $post->updated_at ?>
                     </figcaption>
                 </div>
             </div>

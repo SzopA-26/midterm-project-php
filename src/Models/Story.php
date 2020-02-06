@@ -128,6 +128,15 @@ class Story extends Model
         return $data;
     }
 
+    // public function select_frall_by_id($id) {
+    //     $sql = "SELECT * FROM posts"
+    //         . " WHERE `id` = :id";
+    //     $data = $this->db->queryAll($sql,[
+    //         ':id' => $id
+    //     ]);
+    //     return $data;
+    // }
+
     public function search_by_title($title) {
         $sql = "SELECT * FROM posts "
             . " WHERE `title` LIKE :title AND `deleted_at` is NULL AND `publish` = 1";

@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Controllers;
-use App\Models\Admin;
+use App\Models\Gift;
 use App\Models\Story;
 use App\Models\View;
 use App\Models\User;
@@ -25,24 +25,61 @@ class AdminController extends Controller
             if ($d > 5 && $m > 5 && $y>5) {
                 break;
             } 
-            if ((new Story())->select_by_post_id_date($post_id)) {
-                $daily_posts[$d] = (new Story())->select_by_post_id_join_users($post_id);
+            if ((new Story())->select_by_post_id_week($post_id)) {
+                $weekly_posts[$d] = (new Story())->select_by_post_id_join_users($post_id);
                 $d++;
             }
             if ((new Story())->select_by_post_id_month($post_id)) {
-                $month_posts[$m] = (new Story())->select_by_post_id_join_users($post_id);
+                $monthly_posts[$m] = (new Story())->select_by_post_id_join_users($post_id);
                 $m++;
             }
             if ((new Story())->select_by_post_id_year($post_id)) {
-                $year_posts[$y] = (new Story())->select_by_post_id_join_users($post_id);
+                $yearly_posts[$y] = (new Story())->select_by_post_id_join_users($post_id);
                 $y++;
             }
         }
+
+        $users = (new User())->select_all();
+        foreach ($users as $user) {
+            $gifts_arr[$user->id] = 0;
+            $gifts = (new Gift())->select_gift_by_user_id($user->id);
+            foreach ($gifts as $gift) {
+                $gifts_arr[$user->id] += $gift->value;
+            }
+        }
+        arsort($gifts_arr);
+
+        // $g =(new Gift())->select_gift_by_user_id_week(7);
+        // echo '<pre>';
+        // var_dump($g);
+        // echo '</pre>';
+        foreach ($gifts_arr as $user_id => $value) {
+            if ((new Gift())->select_gift_by_user_id_week($user_id)) {
+                $user = (new User())->select_by_user_id($user_id);
+                $weekly_gifts[$user->username] = $value;
+            }
+            if ((new Gift())->select_gift_by_user_id_month($user_id)) {
+                $user = (new User())->select_by_user_id($user_id);
+                $monthly_gifts[$user->username] = $value;
+            }
+            if ((new Gift())->select_gift_by_user_id_year($user_id)) {
+                $user = (new User())->select_by_user_id($user_id);
+                $yearly_gifts[$user->username] = $value;
+            }
+        }
+
+
+
+
         return $this->render('admin/dashboard',[
-            'daily_posts' => $daily_posts ,
-            'month_posts' =>  $month_posts,
-            'year_posts' => $year_posts,
-            'views' => $views
+            'weekly_posts' => $weekly_posts ,
+            'monthly_posts' =>  $monthly_posts,
+            'yearly_posts' => $yearly_posts,
+            'views' => $views,
+            'weekly_gifts' => $weekly_gifts ,
+            'monthly_gifts' =>  $monthly_gifts,
+            'yearly_gifts' => $yearly_gifts
+
         ]);
     }
 

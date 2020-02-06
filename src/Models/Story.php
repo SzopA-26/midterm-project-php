@@ -137,9 +137,9 @@ class Story extends Model
         return $data;
     }
 
-    public function select_by_post_id_date($post_id) {
+    public function select_by_post_id_week($post_id) {
         $sql = "SELECT * FROM posts "
-            . " WHERE (`id` = :post_id AND `deleted_at` is NULL AND `publish` = 1 AND DATE(`published_at`) = DATE(NOW()))";
+            . " WHERE (`id` = :post_id AND `deleted_at` is NULL AND `publish` = 1 AND (`published_at` > DATE_SUB(now(), INTERVAL 7 DAY)))";
         $data = $this->db->queryFirst($sql. " LIMIT 1", [
             ':post_id' => $post_id
         ]);
@@ -148,7 +148,7 @@ class Story extends Model
 
     public function select_by_post_id_month($post_id) {
         $sql = "SELECT * FROM posts "
-            . " WHERE (`id` = :post_id AND `deleted_at` is NULL AND `publish` = 1 AND MONTH(`published_at`) = MONTH(NOW()))";
+            . " WHERE (`id` = :post_id AND `deleted_at` is NULL AND `publish` = 1 AND (`published_at` > DATE_SUB(now(), INTERVAL 30 DAY)))";
         $data = $this->db->queryFirst($sql. " LIMIT 1", [
             ':post_id' => $post_id
         ]);
@@ -157,7 +157,7 @@ class Story extends Model
 
     public function select_by_post_id_year($post_id) {
         $sql = "SELECT * FROM posts "
-            . " WHERE (`id` = :post_id AND `deleted_at` is NULL AND `publish` = 1 AND YEAR(`published_at`) = YEAR(NOW()))";
+            . " WHERE (`id` = :post_id AND `deleted_at` is NULL AND `publish` = 1 AND (`published_at` > DATE_SUB(now(), INTERVAL 365 DAY)))";
         $data = $this->db->queryFirst($sql. " LIMIT 1", [
             ':post_id' => $post_id
         ]);

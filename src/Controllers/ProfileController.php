@@ -4,10 +4,8 @@ namespace App\Controllers;
 
 use App\Framework\Utilities\Session;
 use App\Models\User;
-use App\Models\Follow;
 use App\Models\Story;
 use App\Models\Gift;
-use Exception;
 
 class ProfileController extends Controller {
 

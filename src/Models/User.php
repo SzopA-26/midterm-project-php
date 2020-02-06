@@ -111,4 +111,11 @@ class User extends Model
         ]);
         return $data;
     }
+
+    public function select_all() {
+        $sql = "SELECT * FROM users"
+            . " WHERE `ban` = 0";
+        $data = $this->db->queryAll($sql);
+        return $data;
+    }
 }

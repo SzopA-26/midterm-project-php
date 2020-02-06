@@ -164,4 +164,13 @@ class Story extends Model
         return $data;
     }
 
+    public function count_post_by_published_of_month($x){
+        $sql = "SELECT COUNT(*) AS `count_published` FROM posts 
+        WHERE MONTH(`published_at`) = :x;";
+        $data = $this->db->queryFirst($sql. " LIMIT 1", [
+            ':x' => $x
+        ]);
+        return $data;
+    }
+
 }

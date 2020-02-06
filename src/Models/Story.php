@@ -9,7 +9,7 @@ class Story extends Model
     public function insert($title, $content, $user_id) {
         $sql = "INSERT INTO posts (`title`, `content`, `created_at`, `updated_at`, `user_id`)"
                 ." VALUES(:title, :content, NOW(), NOW(), :user_id)";
-        $data = $this->db->queryAll($sql ,[
+        $data = $this->db->queryFirst($sql ,[
             ':title' => $title,
             ':content' => $content,
             ':user_id' => $user_id
@@ -69,13 +69,21 @@ class Story extends Model
         return $data;
     }
 
-    public function select_by_new($n) {
-        $sql = "SELECT * FROM posts JOIN users ON `posts`.`user_id`=`users`.`id`
-        WHERE `deleted_at` IS NULL AND `publish` = 1 ORDER BY `posts`.`id` DESC LIMIT 6 ;";
-            
+    public function select_by_user_id_all($user_id) {
+        $sql = "SELECT * FROM posts"
+            . " WHERE (`user_id` = :user_id AND `deleted_at` is null )";
         $data = $this->db->queryAll($sql, [
-            ':n' => $n
+            ':user_id' => $user_id
         ]);
+        return $data;
+    }
+
+
+    public function select_by_new_8() {
+        $sql = "SELECT `posts`.*,`users`.`username` FROM posts JOIN users ON `posts`.`user_id` = `users`.`id`".
+        " WHERE `publish` = 1 AND `deleted_at` is NULL".
+        " order by `id` desc ";
+        $data = $this->db->queryAll($sql . "LIMIT 8");
         return $data;
     }
 

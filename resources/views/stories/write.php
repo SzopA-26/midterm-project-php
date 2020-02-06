@@ -1,9 +1,9 @@
 <?php $this->layout('layouts/writeLayout', ['tab' => 'stories']) ?>
 
-
+<form >
 <div>
     <label for="title">Story title</label>
-    <input type="text" name="title" id="title-input" value="<?= $title ?>">
+    <input required type="text" name="title" id="title-input" value="<?= $title ?>">
     <input type="hidden" id="post_id" value="<?= $post_id ?>">
 </div>
     
@@ -36,3 +36,4 @@
         <button type="button" class="btn btn-outline-secondary" id="update-story-btn">Update</button>
     </div>
 <?php endif; ?>
+</form>

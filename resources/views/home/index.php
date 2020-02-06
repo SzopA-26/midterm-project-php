@@ -55,6 +55,7 @@ $auth = Session::read('Auth');
     <div class="col-8">
         <h1>NEW</h1>
         <br>
+        <?php $x=1 ?>
         <?php foreach ($posts as $post) : ?>
             <div class="row justify-content-center">
                 <div class="col-10">
@@ -73,7 +74,7 @@ $auth = Session::read('Auth');
                     <p class="card-subtitle mb-2 text-muted"><?= $post->username ?> --> <?= $post->created_at ?></p>
                 </div>
                 <!-- <div class="col">
-                    <img src="../../img/book-cover-1.jpg" alt="book-cover-1" width="100" height="150">
+                    <img src="../../img/book-cover-<?=$x++?>.jpg" alt="book-cover-1" width="100" height="150">
                 </div> -->
             </div>
             <hr class="under-line">

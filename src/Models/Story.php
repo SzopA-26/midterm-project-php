@@ -70,8 +70,8 @@ class Story extends Model
     }
 
     public function select_by_new($n) {
-        $sql = "SELECT * FROM posts JOIN users ON `posts`.`user_id`=`users`.`id`
-        WHERE `deleted_at` IS NULL AND `publish` = 1 ORDER BY `posts`.`id` DESC LIMIT 6 ;";
+        $sql = "SELECT * FROM posts JOIN users ON `posts`.`user_id`=`users`.`id`"
+                . " WHERE `deleted_at` IS NULL AND `publish` = 1 ORDER BY `posts`.`id` DESC LIMIT :n ";
             
         $data = $this->db->queryAll($sql, [
             ':n' => $n

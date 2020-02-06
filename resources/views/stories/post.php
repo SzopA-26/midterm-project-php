@@ -15,7 +15,7 @@ $auth = Session::read('Auth');
                     <img src="../../img/icon-profile.png" width="140" height="140">
                     <br>
                     <br>
-                    <a href="/profile/user/<?= $comment->username ?>"><?= $username ?></a>
+                    <a href="/profile/user/<?= $username ?>"><?= $username ?></a>
                 </div>
                 <div class="col">
                     <div class="card-header">

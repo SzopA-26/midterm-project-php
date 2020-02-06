@@ -20,19 +20,29 @@ class AdminController extends Controller
         }
         arsort($views);
 
-        $i = 0;
+        $d = 0; $m=0; $y=0;
         foreach ($views as $post_id => $view) {
-            if ($i > 5) {
+            if ($d > 5 && $m > 5 && $y>5) {
                 break;
             } 
-            if ((new Story())->select_by_post_id($post_id)) {
-                $posts[$i] = (new Story())->select_by_post_id_join_users($post_id);
-                $i++;
+            if ((new Story())->select_by_post_id_date($post_id)) {
+                $daily_posts[$d] = (new Story())->select_by_post_id_join_users($post_id);
+                $d++;
+            }
+            if ((new Story())->select_by_post_id_month($post_id)) {
+                $month_posts[$m] = (new Story())->select_by_post_id_join_users($post_id);
+                $m++;
+            }
+            if ((new Story())->select_by_post_id_year($post_id)) {
+                $year_posts[$y] = (new Story())->select_by_post_id_join_users($post_id);
+                $y++;
             }
         }
         return $this->render('admin/dashboard',[
-            'daily_posts' => $posts ,
-            'daily_views' => $views
+            'daily_posts' => $daily_posts ,
+            'month_posts' =>  $month_posts,
+            'year_posts' => $year_posts,
+            'views' => $views
         ]);
     }
 

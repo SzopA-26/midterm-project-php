@@ -29,12 +29,15 @@
                                     <div class="col">
                                         <table style="width:100%; margin:auto;">
                                             <tr>
+                                                <th>Story</th>
                                                 <th>Name</th>
                                                 <th>View</th>
                                                 
                                             </tr>
-                                            <?php foreach($posts as $post) : ?>
+                                            
+                                            <?php foreach($daily_posts as $post) : ?>
                                             <tr>
+                                                <td><?= $post->title ?></td>
                                                 <td><?= $post->username ?></td>
                                                 <td><?= $views[$post->id] ?></td>
                                             </tr>
@@ -52,30 +55,17 @@
                                     <div class="col">
                                         <table style="width:100%; margin:auto;">
                                             <tr>
+                                                <th>Story</th>
                                                 <th>Name</th>
                                                 <th>View</th>
                                             </tr>
+                                            <?php foreach($month_posts as $post) : ?>
                                             <tr>
-                                                <td>Zee</td>
-                                                <td>10000</td>
+                                                <td><?= $post->title ?></td>
+                                                <td><?= $post->username ?></td>
+                                                <td><?= $views[$post->id] ?></td>
                                             </tr>
-
-                                            <tr>
-                                                <td>Bob</td>
-                                                <td>9995</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Viva</td>
-                                                <td>8957</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Fit</td>
-                                                <td>5221</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Tee</td>
-                                                <td>4532</td>
-                                            </tr>
+                                            <?php endforeach; ?>
                                         </table>
                                     </div>
 
@@ -88,30 +78,17 @@
                                     <div class="col">
                                         <table style="width:100%; margin:auto;">
                                             <tr>
+                                                <th>Story</th>
                                                 <th>Name</th>
                                                 <th>View</th>
                                             </tr>
-                                            <tr>
-                                                <td>Zee</td>
-                                                <td>10000</td>
+                                            <?php foreach($year_posts as $post) : ?>
+                                            <tr>                                                
+                                                <td><?= $post->title ?></td>
+                                                <td><?= $post->username ?></td>
+                                                <td><?= $views[$post->id] ?></td>
                                             </tr>
-
-                                            <tr>
-                                                <td>Bob</td>
-                                                <td>9995</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Viva</td>
-                                                <td>8957</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Fit</td>
-                                                <td>5221</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Tee</td>
-                                                <td>4532</td>
-                                            </tr>
+                                            <?php endforeach; ?>
                                         </table>
                                     </div>
 

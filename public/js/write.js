@@ -17,7 +17,16 @@ $(document).ready(function() {
             },
             method: 'POST'
         }).done(function (message) {
-            console.log(message)
+            console.log(message);
+            console.log(message == message);
+            for (let i in message) {
+                console.log(i , message[i]);
+                
+            }
+            let test = 'success'
+            console.log(test.length);
+            
+            console.log( message == "success")
             if (message == 'success') {
                 alert('stories saved success.')
                 window.location.href='/stories'

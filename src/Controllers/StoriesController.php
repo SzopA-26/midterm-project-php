@@ -99,12 +99,16 @@ class StoriesController extends Controller
         $auth = Session::read('Auth');
         $input = $this->request->input;
         if (!$input->title) {
-            return 'fail';
+            return 'faillll';
         }
-        $total_posts = count((new Story())->select_by_user_id($auth['id']));
-        // return $input->title . " " . $input->content;
+        $total_posts = count((new Story())->select_by_user_id_all($auth['id']));
+        // var_dump($input->title);
+        // var_dump($input->content);
+        // var_dump($auth['id']);
+        // var_dump($total_posts);
+        
         (new Story())->insert($input->title, $input->content, $auth['id']);
-        if ($total_posts == count((new Story())->select_by_user_id($auth['id']))) {
+        if ($total_posts == count((new Story())->select_by_user_id_all($auth['id']))) {
             return 'fail';
         } return 'success';
     }
@@ -133,11 +137,6 @@ class StoriesController extends Controller
             'post' => $post,
             'comments' => $comments,
             'username' => $user->username
-
-            // 'title' => $post->title,
-            // 'content' => $post->content,
-            // 'type' => 'update',
-            // 'post_id' => $post->id
         ]);
 
     }

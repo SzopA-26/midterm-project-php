@@ -62,7 +62,7 @@ $auth = Session::read('Auth');
                         <a href="/stories/post/<?= $post->id ?>">
                     <?php endif; ?>
 
-                        <h4 ><?= $post->title ?></h4>
+                        <h4 ><?= $post->title ?>  </h4>
 
                     <?php if ($auth) : ?>
                         </a>

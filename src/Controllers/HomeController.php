@@ -26,7 +26,7 @@ class HomeController extends Controller
             }
         }
         
-        $posts_new = (new Story())->select_by_new(8);
+        $posts_new = (new Story())->select_by_new_8();
         return $this->render('home/index',[
             'posts' => $posts_new,
             'trends' => $trends

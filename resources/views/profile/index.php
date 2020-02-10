@@ -21,7 +21,9 @@ $auth = Session::read('Auth');
                 <?php if ($auth['role'] == 'admin') : ?>
                     <div>
                         status: 
-                        <?php if ($user->ban == 0) : ?>
+                        <?php if ($user->role == 'admin') : ?>
+                            <span style="color: blue">ADMIN</span>
+                        <?php elseif ($user->ban == 0) : ?>
                             <span style="color: green">ACTIVE</span>
                         <?php else : ?>
                             <span style="color: red">BANNED</span>
@@ -30,7 +32,7 @@ $auth = Session::read('Auth');
                 <?php endif; ?>
             </div>
         </div>
-        <?php if ($auth['role'] == 'admin' && $username != 'admin') : ?>
+        <?php if ($auth['role'] == 'admin' && $username != 'admin' && $user->role != 'admin') : ?>
             <a type="button" class="btn btn-outline" id="edit-btn" href="/users/ban/<?= $user->username ?>" style="margin-top: 0px;margin-bottom: 0px;">
                 <strong>
                     <?php if ($user->ban == 0) : ?>

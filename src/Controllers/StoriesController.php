@@ -59,12 +59,18 @@ class StoriesController extends Controller
     public function delete() {
         $auth = Session::read('Auth');
         $post_id = $this->request->params[0];
-        $post = (new Story())->select_by_post_id($post_id);
-        $user = (new User())->select_by_user_id($post->user_id);
-        $post = (new Story())->delete($post_id);
+        $post = (new Story())->select_by_post_id_all($post_id);
         if ($auth['role'] == 'admin') {
-            return $this->redirect('/profile/user/'.$user->username);
+            $user = (new User())->select_by_user_id($post->user_id);
+            $post = (new Story())->delete($post_id);
+            // var_dump($user);
+            if ($user->role = 'admin') {
+                echo "<script>window.location.href='/stories/draft';</script>";
+            } else {
+                return $this->redirect('/profile/user/'.$user->username);
+            }
         } else {
+            $post = (new Story())->delete($post_id);
             echo "<script>window.location.href='/stories/draft';</script>";
         }
     }

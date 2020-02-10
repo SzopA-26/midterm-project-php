@@ -182,4 +182,13 @@ class Story extends Model
         return $data;
     }
 
+    public function select_by_post_id_all($post_id) {
+        $sql = "SELECT * FROM posts"
+            . " WHERE id = :post_id";
+        $data = $this->db->queryFirst($sql." LIMIT 1",[
+            ':post_id' => $post_id
+        ]);
+        return $data;
+    }
+
 }

@@ -73,15 +73,37 @@ DB_PASSWORD=your-secret
 
 
 ## Web JAU
-    - เป็นเว็บสำหรับการเขียนและอ่านเรื่องราวต่างๆ (story , post , etc.)
+    - เป็นเว็บสำหรับการเขียนและอ่านเรื่องราวต่างๆ (story , post , etc.) โดยมีระบบ gift ที่สามารถนำ Point ของ gift ไปแลกเงินได้
 
-    
+## Installation
+    - clone repository ไปไว้ที่ www ของ laragon
+    - ใช้คำสั่ง composer install
+    - เปลี่ยนชื่อ folder เป็นชื่อที่ต้องการ 
+    - เปิดหน้าเว็บ url ชื่อโฟลเดอร์.test
+
+## Database
+    - import ไฟล์ .sql จาก vendor/database
+    - นำ code ไปรันใน database เพื่อสร้าง table ต่างๆ และตั้งชื่อต่างๆตาม .env
+
+## .env File
+    DB_HOST=localhost
+    DB_NAME=midterm
+    DB_USER=midterm 
+    DB_PASSWORD=1234
+
+# Example user
+    > Admin
+        Email : admin@email.com
+        Password : admin
+    > User
+        Email : bell@ku.th
+        Password : bell1234
 
 ## System & Pages
     > Admin
         - Dashboard สามารถดูสรุปข้อมูลต่างๆได้
-        - สามารถ ban user ได้ โดยมีการ request จาก user มา
-        - 
+        - สามารถ ban user ได้ โดยมีสถานะขึ้น Active / Banned
+        - หน้า Users สำหรับดู users ทั้งหมด
     > User (Already login)
         - Profile หน้าสำหรับดูข้อมูลส่วนตัว สามารถ edit ข้อมูลบางส่วนได้
         - Other Profile คือหน้า Profile ของคนอื่น ดูข้อมูลได้บางส่วน
@@ -89,7 +111,7 @@ DB_PASSWORD=your-secret
         - สามารถ comment Story ได้
         - Post เป็นหน้าสำหรับโพสต่างๆ สามารถดู comment ได้
         - มีระบบ Send Gift คือการส่งของขวัญให้กับบุคคลที่ชื่นชอบ
-        - 
+        - สามารถ search หาข้อมูลต่างๆในเว็บได้ตาม type เช่น post 
 
     > Guest user (Not login)
         - สามารถดูหน้า Home ได้
@@ -98,3 +120,6 @@ DB_PASSWORD=your-secret
         - ไม่สามารถ search ได้
         - มีระบบ Sign up สำหรับลงทะเบียน
         - มีระบบ Login สำหรับเข้าใช้งานส่วนที่ lock ไว้สำหรับ user
+
+
+

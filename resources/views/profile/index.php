@@ -18,8 +18,29 @@ $auth = Session::read('Auth');
                 <h4>
                     <?= $username ?>
                 </h4>
+                <?php if ($auth['role'] == 'admin') : ?>
+                    <div>
+                        status: 
+                        <?php if ($user->ban == 0) : ?>
+                            <span style="color: green">ACTIVE</span>
+                        <?php else : ?>
+                            <span style="color: red">BANNED</span>
+                        <?php endif; ?>
+                    </div>
+                <?php endif; ?>
             </div>
         </div>
+        <?php if ($auth['role'] == 'admin' && $username != 'admin') : ?>
+            <a type="button" class="btn btn-outline" id="edit-btn" href="/users/ban/<?= $user->username ?>" style="margin-top: 0px;margin-bottom: 0px;">
+                <strong>
+                    <?php if ($user->ban == 0) : ?>
+                        BAN
+                    <?php else : ?>
+                        UNBAN
+                    <?php endif; ?>
+                </strong>
+            </a>
+        <?php endif; ?>
 
         <div class="card">
             <div class="card-body">
@@ -40,6 +61,7 @@ $auth = Session::read('Auth');
                 </div>
             </div>
         </div>
+        
         <?php if ($auth['username'] == $username) : ?>
             <a type="button" class="btn btn-outline" id="edit-btn" href="/profile/edit"><strong>EDIT</strong></a>
         <?php else : ?>
@@ -94,17 +116,6 @@ $auth = Session::read('Auth');
             </div>
         <?php endif; ?>
 
-        <?php if ($auth['role'] == 'admin') : ?>
-            <a type="button" class="btn btn-outline" id="edit-btn" href="/users/ban/<?= $user->username ?>" style="margin-top: 15px;margin-bottom: 15px;">
-                <strong>
-                    <?php if ($user->ban == 0) : ?>
-                        BAN
-                    <?php else : ?>
-                        UNBAN
-                    <?php endif; ?>
-                </strong>
-            </a>
-        <?php endif; ?>
 
     </div>
 
@@ -128,10 +139,13 @@ $auth = Session::read('Auth');
                     </a>
                     <figcaption class="figure-caption">
                         updated on <?= $post->updated_at ?>
-                        <?php if ($auth['role'] == 'admin') : ?>
+                        <?php if ($auth['role'] == 'admin' || $auth['username'] == $username) : ?>
                             <span class="dropdown">
                                 <a href="#" class="dropdown-toggle " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="caret"></span></a>
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                    <?php if (($auth['username'] == $username && $auth['role'] != 'admin' ) || ($username == 'admin' && $auth['role'] == 'admin' )) : ?>
+                                        <li><a class="dropdown-item" href="/stories/edit/<?= $post->id ?>">Edit</a></li>
+                                    <?php endif; ?>
                                     <li><a class="dropdown-item" href="/stories/delete/<?= $post->id ?>">Delete</a></li>
                                     <li><a class="dropdown-item" href="/stories/unpublish/<?= $post->id ?>">Unpublish</a></li>
                                 </ul>

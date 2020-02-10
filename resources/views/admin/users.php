@@ -1,73 +1,40 @@
 <?php $this->layout('layouts/app', ['tab' => 'users']) ?>
 
-<h3>Users</h3>
+
+<h3>All Users(<?= count($user_list) ?>)</h3>
 <br>
-<table style="width:100%">
-    <tr>
-        <th>Username</th>
-        <th>Email</th>
-        <th>Password</th>
-        <th>Gender</th>
-    </tr>
-    <tr>
-        <td>Zee</td>
-        <td>zee@ku.th</td>
-        <td>zee1234</td>
-        <td>Male</td>
-    </tr>
-    <tr>
-        <td>Bob</td>
-        <td>bob@ku.th</td>
-        <td>bob1234</td>
-        <td>Male</td>
-    </tr>
-    <tr>
-        <td>Viva</td>
-        <td>viva@ku.th</td>
-        <td>viva1234</td>
-        <td>Female</td>
-    </tr>
-    <tr>
-        <td>Fit</td>
-        <td>fit@ku.th</td>
-        <td>fit1234</td>
-        <td>Female</td>
-    </tr>
-    <tr>
-        <td>Tee</td>
-        <td>tee@ku.th</td>
-        <td>tee1234</td>
-        <td>Male</td>
-    </tr>
-    <tr>
-        <td>Bell</td>
-        <td>bell@ku.th</td>
-        <td>bell1234</td>
-        <td>Female</td>
-    </tr>
-    <tr>
-        <td>Non</td>
-        <td>non@ku.th</td>
-        <td>non1234</td>
-        <td>Male</td>
-    </tr>
-    <tr>
-        <td>Ing</td>
-        <td>ing@ku.th</td>
-        <td>ing1234</td>
-        <td>Male</td>
-    </tr>
-    <tr>
-        <td>Zen</td>
-        <td>zen@ku.th</td>
-        <td>zen1234</td>
-        <td>Male</td>
-    </tr>
-    <tr>
-        <td>Mook</td>
-        <td>mook@ku.th</td>
-        <td>mook1234</td>
-        <td>Female</td>
-    </tr>
+<table class="table text-center">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">username</th>
+            <th scope="col">email</th>
+            <th scope="col">created date</th>
+            <th scope="col">stories</th>
+            <th scope="col">views</th>
+            <th scope="col">gifts</th>
+            <th scope="col">status</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        <?php $i = 1 ?>
+        <?php foreach ($user_list as $user) : ?>
+            <tr class="tr-link" onclick="window.location='/profile/user/<?= $user['user_info']->username ?>';">
+                <th scope="row"><?= $i++ ?></th>
+                <td><?= $user['user_info']->username ?></td>
+                <td><?= $user['user_info']->email ?></td>
+                <td><?= $user['user_info']->created_date ?></td>
+                <td><?= $user['total_post'] ?></td>
+                <td><?= $user['total_view'] ?></td>
+                <td><?= $user['point'] ?></td>
+                <?php if ($user['user_info']->ban == 0) : ?>
+                    <td style="color:green">ACTIVE</td>
+                <?php else : ?>
+                    <td style="color:red">BANNED</td>
+                <?php endif; ?>
+
+            </tr>
+        <?php endforeach; ?>
+    </tbody>
 </table>
-<hr class="under-line">

@@ -105,7 +105,14 @@
         </div>
     </div>
     <div class="col">
-        <canvas id="post-chart" style="max-width: 500px; margin:auto;"></canvas>
+        <div class="card">
+            <div class="card-header">
+                STORIES PUBLISHING IN A YEAR
+            </div>
+            <div class="card-body">
+                <canvas id="post-chart" style="max-width: 500px; margin:auto;"></canvas>
+            </div>
+        </div>
     </div>
 </div>
 
@@ -210,7 +217,15 @@
         </div>
     </div>
     <div class="col">
-        <canvas id="gift-chart" style="max-width: 500px; margin:auto;"></canvas>
+        <div class="card">
+            <div class="card-header">
+                GIFT SENDING IN A YEAR
+            </div>
+            <div class="card-body">
+                <canvas id="gift-chart" style="max-width: 500px; margin:auto;"></canvas>
+                
+            </div>
+        </div>
     </div>
 </div>
 
@@ -236,7 +251,7 @@ $data2script = "[" . implode(", ", $data2script) . "]";
         data: {
             labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
             datasets: [{
-                label: '# of Stories',
+                label: 'Story published',
 
                 data: <?= $data2script ?>,
                 backgroundColor: [
@@ -292,11 +307,11 @@ $data2script = "[" . implode(", ", $data2script) . "]";
 <script>
     var ctx = document.getElementById("gift-chart").getContext('2d');
     var myChart = new Chart(ctx, {
-        type: 'line',
+        type: 'bar',
         data: {
             labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
             datasets: [{
-                label: 'Value of Gifts',
+                label: 'Value of Gifts Sending',
 
                 data: <?= $data2script ?>,
                 backgroundColor: [

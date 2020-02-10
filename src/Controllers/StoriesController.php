@@ -47,7 +47,7 @@ class StoriesController extends Controller
 
     public function edit() {
         $post_id = $this->request->params[0];
-        $post = (new Story())->select_by_post_id($post_id);
+        $post = (new Story())->select_all_by_id($post_id);
          return $this->render('stories/write', [
             'title' => $post->title,
             'content' => $post->content,
@@ -72,10 +72,11 @@ class StoriesController extends Controller
     public function publish() {
         $auth = Session::read('Auth');
         $post_id = $this->request->params[0];
-        $post = (new Story())->select_by_post_id($post_id);
+        $post = (new Story())->select_all_by_id($post_id);
         $user = (new User())->select_by_user_id($post->user_id);
+
         (new Story())->update_publish($post_id);
-        if ($auth['role'] == 'admin') {
+        if ($auth['role'] == 'admin' && $user->username != $auth['username']) {
             return $this->redirect('/profile/user/'.$user->username);
         } else {
             echo "<script>window.location.href='/stories/draft';</script>";
@@ -88,10 +89,10 @@ class StoriesController extends Controller
         $post = (new Story())->select_by_post_id($post_id);
         $user = (new User())->select_by_user_id($post->user_id);
         (new Story())->update_publish($post_id);
-        if ($auth['role'] == 'admin') {
+        if ($auth['role'] == 'admin' && $user->username != $auth['username']) {
             return $this->redirect('/profile/user/'.$user->username);
         } else {
-            echo "<script>window.location.href='/stories/draft';</script>";
+            echo "<script>window.location.href='/stories/published';</script>";
         }
     }
 

@@ -173,3 +173,16 @@ a.nav-link, span.caret {
     background-color: #05af1b;
 }
 
+#card-trend {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
+}
+#card-trend:hover {
+    box-shadow: 0 8px 16px 0 rgba(0, 23, 83, 0.671);
+
+}
+
+.tr-link:hover {
+    cursor: pointer;
+    background-color: #D3D3D3;
+}

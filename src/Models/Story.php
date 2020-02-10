@@ -106,7 +106,7 @@ class Story extends Model
     }
 
     public function update_publish($post_id) {
-        $post = (new Story())->select_by_post_id($post_id);
+        $post = (new Story())->select_all_by_id($post_id);
         if ($post->publish == 1) {
             $sql = "UPDATE posts SET"
                 . " `publish` = 0, `published_at` = NOW()"
@@ -128,14 +128,14 @@ class Story extends Model
         return $data;
     }
 
-    // public function select_frall_by_id($id) {
-    //     $sql = "SELECT * FROM posts"
-    //         . " WHERE `id` = :id";
-    //     $data = $this->db->queryAll($sql,[
-    //         ':id' => $id
-    //     ]);
-    //     return $data;
-    // }
+    public function select_all_by_id($id) {
+        $sql = "SELECT * FROM posts"
+            . " WHERE `id` = :id";
+        $data = $this->db->queryFirst($sql,[
+            ':id' => $id
+        ]);
+        return $data;
+    }
 
     public function search_by_title($title) {
         $sql = "SELECT * FROM posts "

@@ -35,6 +35,10 @@ class Controller
         return header("Location: " . Url::getFullPath($path), true, 301);
     }
 
+    public function reload() {
+        header("Refresh:0");
+    }
+
     public function isPost() {
         return $_SERVER['REQUEST_METHOD'] === 'POST';
     }

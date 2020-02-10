@@ -91,7 +91,7 @@ $auth = Session::read('Auth');
         <?php $x = 1; ?>
         <?php foreach ($trends as $trend) : ?>
             <br>
-            <div class="card">
+            <div class="card" id="card_trend">
                 <div class="card-body">
                     <?php if ($auth) : ?>
                         <a href="/stories/post/<?= $trend->id ?>">

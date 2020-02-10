@@ -1,25 +1,28 @@
 <?php
 
 namespace App\Models;
+
 use App\Models\Story;
 use App\Models\View;
 
 class User extends Model
 {
-    public function insert($username, $email, $password, $birthdate, $gender) {
+    public function insert($username, $email, $password, $birthdate, $gender)
+    {
         $sql = "INSERT INTO users (`username`, `email`, `password`, `created_at`, `updated_at`, `birthdate`, `gender`) "
-                ." VALUES(:username, :email, :password, NOW(), NOW(), :birthdate, :gender)";
-        $data = $this->db->queryAll($sql ,[
+            . " VALUES(:username, :email, :password, NOW(), NOW(), :birthdate, :gender)";
+        $data = $this->db->queryAll($sql, [
             ':username' => $username,
             ':email' => $email,
             ':password' => $password,
-            ':birthdate' => $birthdate. ' 00:00:00',
+            ':birthdate' => $birthdate . ' 00:00:00',
             ':gender' => $gender
         ]);
         return $data;
     }
 
-    public function update_username($old_username, $new_username) {
+    public function update_username($old_username, $new_username)
+    {
         $sql = "UPDATE users SET"
             . " `username` = :new_username,"
             . " `updated_at` = NOW()"
@@ -31,7 +34,8 @@ class User extends Model
         return $data;
     }
 
-    public function update_password($password, $username) {
+    public function update_password($password, $username)
+    {
         $sql = "UPDATE users SET"
             . " `password` = :password,"
             . " `updated_at` = NOW()"
@@ -43,7 +47,8 @@ class User extends Model
         return $data;
     }
 
-    public function select_by_email($email) {
+    public function select_by_email($email)
+    {
         $sql = "SELECT * FROM users"
             . " WHERE `email` = :email" . " LIMIT 1";
         $data = $this->db->queryFirst($sql, [
@@ -52,7 +57,8 @@ class User extends Model
         return $data;
     }
 
-    public function select_by_username($username) {
+    public function select_by_username($username)
+    {
         $sql = "SELECT * FROM users"
             . " WHERE `username` = :username";
         $data = $this->db->queryFirst($sql . " LIMIT 1", [
@@ -61,7 +67,8 @@ class User extends Model
         return $data;
     }
 
-    public function select_by_user_id($user_id) {
+    public function select_by_user_id($user_id)
+    {
         $sql = "SELECT * FROM users"
             . " WHERE `id` = :user_id";
         $data = $this->db->queryFirst($sql . " LIMIT 1", [
@@ -70,7 +77,8 @@ class User extends Model
         return $data;
     }
 
-    public function get_total_views($username) {
+    public function get_total_views($username)
+    {
         $user = (new User())->select_by_username($username);
         $posts = (new Story())->select_by_user_id($user->id);
         $views = 0;
@@ -80,22 +88,25 @@ class User extends Model
         return $views;
     }
 
-    public function get_total_posts($username) {
+    public function get_total_posts($username)
+    {
         $user = (new User())->select_by_username($username);
         $posts = (new Story())->select_by_user_id($user->id);
         return count($posts);
     }
 
-    public function search_by_username($username) {
+    public function search_by_username($username)
+    {
         $sql = "SELECT * FROM users "
             . " WHERE `username` LIKE :username";
         $data = $this->db->queryAll($sql, [
-            ':username' => '%'.$username.'%'
+            ':username' => '%' . $username . '%'
         ]);
         return $data;
     }
 
-    public function update_ban_by_user_id($user_id) {
+    public function update_ban_by_user_id($user_id)
+    {
         $user = (new User())->select_by_user_id($user_id);
         if ($user->ban == 1) {
             $sql = "UPDATE users SET"
@@ -112,9 +123,18 @@ class User extends Model
         return $data;
     }
 
-    public function select_all() {
+    public function select_all()
+    {
         $sql = "SELECT * FROM users"
             . " WHERE `ban` = 0";
+        $data = $this->db->queryAll($sql);
+        return $data;
+    }
+
+    public function select_all_order_by_ban()
+    {
+        $sql = "SELECT *, DATE(`created_at`) as `created_date` FROM users"
+            . " ORDER BY ban";
         $data = $this->db->queryAll($sql);
         return $data;
     }

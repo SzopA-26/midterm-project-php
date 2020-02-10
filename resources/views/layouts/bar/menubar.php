@@ -49,7 +49,7 @@
 
 
                     <div class="container">
-
+                        <div>Email</div>
                         <div class="input-group">
                             <span class="input-group-append bg-white border-left-0">
                                 <span class="input-group-text bg-transparent">
@@ -60,7 +60,7 @@
                         </div>
                         <br>
 
-
+                        <div>Password</div>
                         <div class="input-group">
                             <span class="input-group-append bg-white border-left-0">
                                 <span class="input-group-text bg-transparent">
@@ -113,7 +113,7 @@
                     <form action="/users/create" method="post">
 
                     <div class="container">
-
+                        <div>Email</div>
                         <div class="input-group">
                             <span class="input-group-append bg-white border-left-0">
                                 <span class="input-group-text bg-transparent">
@@ -123,6 +123,7 @@
                             <input required type="email" class="form-control " id="email" placeholder="Enter email" name="email">
                         </div>
                         <br>
+                        <div>Username</div>
                         <div class="input-group">
                             <span class="input-group-append bg-white border-left-0">
                                 <span class="input-group-text bg-transparent">
@@ -133,7 +134,7 @@
                                 name="username">
                         </div>
                         <br>
-
+                        <div>Password</div>
                         <div class="input-group">
                             <span class="input-group-append bg-white border-left-0">
                                 <span class="input-group-text bg-transparent">
@@ -144,7 +145,7 @@
                                 name="password">
                         </div>
                         <br>
-
+                        <div>Confirm Password</div>
                         <div class="input-group">
                             <span class="input-group-append bg-white border-left-0">
                                 <span class="input-group-text bg-transparent">
@@ -156,7 +157,8 @@
                         </div>
                         <br>
                         <div>
-                            <input required readonly id="datepicker" width="276" placeholder="Date of birth" name="birthdate">
+                            <span>Birthdate </span>
+                            <input required readonly id="datepicker" width="276" placeholder="Please select your birthdate" name="birthdate">
                             <script>
                                 $('#datepicker').datepicker({
                                     uiLibrary: 'bootstrap4',
@@ -165,7 +167,7 @@
                             </script>
                         </div>
                         <br>
-
+                        <div>Gender</div>
                         <div class="form-check form-check-inline">
                             <input class="form-check-input" type="radio" name="gender" id="inlineRadio1"
                                 value=1 checked>

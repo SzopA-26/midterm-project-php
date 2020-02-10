@@ -91,7 +91,7 @@ DB_PASSWORD=your-secret
     DB_USER=midterm 
     DB_PASSWORD=1234
 
-# Example user
+## Example user
     > Admin
         Email : admin@email.com
         Password : admin
